@@ -45,5 +45,5 @@ for quote_element in quote_elements:
 # Write to CSV file
 with open(csv_output_path, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['Quote', 'Author'])  # Write header
+    csv_writer.writerow(['Quote', 'Author', 'Comments'])  # Write header
     csv_writer.writerows(rows)
