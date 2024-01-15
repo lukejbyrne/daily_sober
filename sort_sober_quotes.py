@@ -20,15 +20,9 @@ rows = []
 # Extract quotes and authors
 for quote_element in quote_elements:
     quote_element_text = quote_element.li.get_text(strip=True)
-    quote_element_text = quote_element_text.replace('―','-')
-    quote_element_text = quote_element_text.replace('~','-')
-    quote_element_text = quote_element_text.replace('–','-')
-    quote_element_text = quote_element_text.replace('(','-')
-    quote_element_text = quote_element_text.replace('“','"')
-    quote_element_text = quote_element_text.replace('”','"')
-    # quote_element_text = quote_element_text.replace('\"','') # Remove all quotes
-    quote_element_text = quote_element_text.replace('’','\'')
-    quote_element_text = quote_element_text.replace('‘','\'')
+    translation_table = str.maketrans({'―': '-', '~': '-', '–': '-', '(': '-', '“': '"', '”': '"', '’': '\'', '‘': '\''})
+    quote_element_text = quote_element_text.translate(translation_table)
+
 
     # Create regex to split by either '"-' or just ' -'
     pattern = (r'"\s*-\s*|\s+-\s*')
