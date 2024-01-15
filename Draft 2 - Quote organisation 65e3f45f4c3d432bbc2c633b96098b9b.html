@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Draft 2 - Quote organisation </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="65e3f45f-4c3d-432b-bc2c-633b96098b9b" class="page sans"><header><h1 class="page-title">Draft 2 - Quote organisation </h1><p class="page-description"></p></header><div class="page-body"><ul id="082354dd-a754-4bdc-99a0-9f23800365f5" class="bulleted-list"><li style="list-style-type:disc">&quot;Getting sober was the single bravest thing I’ve ever done and will ever do in my life.&quot; - Jamie Lee Curtis</li></ul><ul id="4dc48ead-79ee-4916-82c9-a9ef00fd7c87" class="bulleted-list"><li style="list-style-type:disc">&quot;I finally summoned up the courage to say the three words that would change my life: &#x27;I need help.&#x27;&quot; - Elton John</li></ul><ul id="a07f57bf-5f57-469e-99aa-b0c36295412f" class="bulleted-list"><li style="list-style-type:disc">&quot;Failure is a part of life. If you don’t fail, you don’t learn. If you don’t learn, you’ll never change.&quot; - Morgan Freeman</li></ul><ul id="c3703126-f9c2-48f0-920f-ef60da33d246" class="bulleted-list"><li style="list-style-type:disc">&quot;Tough times never last, but tough people do.&quot; - Robert H. Schuller</li></ul><ul id="3966d539-00b8-4d8a-9538-1b96da4f3aeb" class="bulleted-list"><li style="list-style-type:disc">&quot;Don’t ever discount the wonder of your tears. They can be healing waters and a stream of joy. Sometimes they are the best words the heart can speak.&quot; - William Paul Young</li></ul><ul id="042a7ec3-5d36-4f7d-9944-c6490ad69612" class="bulleted-list"><li style="list-style-type:disc">&quot;I got sober, and I got happy again.&quot; - Macklemore</li></ul><ul id="1a5c6b9e-a7fb-47c4-8c61-f55a0baa0be1" class="bulleted-list"><li style="list-style-type:disc">&quot;I went through heavy, darker times, and I survived them. I didn’t die young, so I’m very lucky.&quot; - Angelina Jolie</li></ul><ul id="68bca644-5fb3-4182-9b4e-f600c9d1381c" class="bulleted-list"><li style="list-style-type:disc">&quot;I’m so grateful to be where I am. I’m so grateful to be sober. I’m so grateful to be. Remember, we are works in progress.&quot; - Jamie Campbell Bower</li></ul><ul id="ea0fb240-c17b-41c4-806e-85dd29dc4e9c" class="bulleted-list"><li style="list-style-type:disc">&quot;Yesterday’s the past, tomorrow’s the future, but today is a gift. That’s why it’s called the present.&quot; - Bil Keane</li></ul><ul id="c967cad8-1af1-4cf2-9189-aacd4ec3454f" class="bulleted-list"><li style="list-style-type:disc">&quot;Believe in your infinite potential. Your only limitations are those you set upon yourself.&quot; - Roy T. Bennett</li></ul><ul id="3527d6d0-4eed-4b22-aad7-38c5b4d9ca12" class="bulleted-list"><li style="list-style-type:disc">&quot;I had all the help in the world, but I didn’t want it. When I hit that moment, I was like, it’s no longer fun when you’re doing it alone.&quot; - Demi Lovato</li></ul><ul id="8d8ea4e9-b1c3-4bd2-a5aa-716f87f96aaf" class="bulleted-list"><li style="list-style-type:disc">&quot;There’s just no better gift. There’s no better gift I can give my kids, there’s no better gift I can give my husband. More importantly, there’s no better gift I can give myself.&quot; - Jessica Simpson</li></ul><ul id="38a29a68-f892-4328-85a3-52bacdeeca21" class="bulleted-list"><li style="list-style-type:disc">&quot;Do not get lost in a sea of despair. Be hopeful, be optimistic. Our struggle is not the struggle of a day, a week, a month, or a year, it is the struggle of a lifetime. Never, ever be afraid to make some noise and get in good trouble, necessary trouble.&quot; - John Lewis</li></ul><ul id="55036dbf-6966-438e-ac53-e13c593aaa3f" class="bulleted-list"><li style="list-style-type:disc">&quot;People may hear your words, but they feel your attitude.&quot; - John C. Maxwell</li></ul><ul id="951774f9-a8b6-4c84-8694-c0d98811f645" class="bulleted-list"><li style="list-style-type:disc">&quot;Forgive the past. It is over. Learn from it and let go. People are constantly changing and growing. Do not cling to a limited, disconnected, negative image of a person in the past. See that person now. Your relationship is always alive and changing.&quot; - Brian Weiss</li></ul><ul id="d5b19d82-dfc8-45b0-87d8-b78578daecec" class="bulleted-list"><li style="list-style-type:disc">&quot;Addiction is not caused by stress on the job. It has more to do with your childhood and lots of other things.&quot; - Kate Moss</li></ul><ul id="c735efea-2426-40b8-9632-3492d4dbc6c5" class="bulleted-list"><li style="list-style-type:disc">&quot;If you need booze or drugs to enjoy your life to the fullest, then you’re doing it wrong.&quot; - Robin Williams</li></ul><ul id="cb31a0b7-2e06-4b3d-b286-018a1951cd8b" class="bulleted-list"><li style="list-style-type:disc">&quot;Knowing your own darkness is the best method for dealing with the darknesses of other people.&quot; - Carl Jung</li></ul><ul id="e6fe24a7-d0c9-4875-9394-68e0651d3629" class="bulleted-list"><li style="list-style-type:disc">&quot;I don’t look to jump over 7-foot bars — I look for 1-foot bars that I can step over.&quot; - Warren Buffett</li></ul><ul id="834c9580-5018-4b8c-b6b8-5c74f73a2ea3" class="bulleted-list"><li style="list-style-type:disc">&quot;I made a commitment to completely cut out drinking and anything that might hamper me from getting my mind and body together. And the floodgates of goodness have opened upon me.&quot; - Denzel Washington</li></ul><ul id="1ab203ef-55db-4952-89ee-6e0efae2e9a9" class="bulleted-list"><li style="list-style-type:disc">&quot;If you don’t have time to do it right, when will you have time to do it over?&quot; - John Wooden</li></ul><ul id="5e4c0006-9083-4674-83a2-3e66e282d4d1" class="bulleted-list"><li style="list-style-type:disc">&quot;Time and tide wait for no man.&quot; - Geoffrey Chaucer</li></ul><ul id="ade6e6a3-7e5c-4b0d-bdcb-30c4a39f7473" class="bulleted-list"><li style="list-style-type:disc">&quot;Don’t limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve.&quot; - Mary Kay Ash</li></ul><ul id="dde81885-67a6-4fa6-8555-d711cf10c03d" class="bulleted-list"><li style="list-style-type:disc">&quot;What you are is God’s gift to you. What you become is your gift to God.&quot; - Hans Urs von Balthasar</li></ul><ul id="b2391ef8-d9a3-4fc4-8c11-126f77179c12" class="bulleted-list"><li style="list-style-type:disc">&quot;Rock bottom became the solid foundation on which I rebuilt my life.&quot; - JK Rowlings</li></ul><ul id="b6bfe631-0191-4f4c-9e91-96a6160fad45" class="bulleted-list"><li style="list-style-type:disc">&quot;Sobriety was the best gift I ever gave myself.&quot; - Rob Lowe</li></ul><ul id="6b8f0136-9c2b-4f93-b367-8179be558cdb" class="bulleted-list"><li style="list-style-type:disc">&quot;Everyone wants happiness. No one wants pain. But you cant have a rainbow without a little rain.&quot;</li></ul><ul id="41ad8eba-cd0e-4b8b-a08d-64bc03e0692b" class="bulleted-list"><li style="list-style-type:disc">&quot;My recovery must come first so that everything I love in life does not have to come last&quot;</li></ul><ul id="cec15fa8-5070-4558-898e-3e2b2e08d580" class="bulleted-list"><li style="list-style-type:disc">&quot;The mentality and behaviour of drug addicts and alcoholics is wholly irrational until you understand that they are completely powerless over their addiction and unless they have structured help, they have no hope&quot; - Russel Brand</li></ul><ul id="f988ab2b-33aa-4794-9464-8843482f25bc" class="bulleted-list"><li style="list-style-type:disc">&quot;Live less out of habit and more out of intent.&quot;</li></ul><ul id="e9460c77-1c2a-494a-b56d-a6e42f76efd3" class="bulleted-list"><li style="list-style-type:disc">&quot;I chose sober because I wanted a better life. I stay sober because I got one&quot;</li></ul><ul id="f71b5e6f-fd81-4585-857a-82f18e5f69af" class="bulleted-list"><li style="list-style-type:disc">&quot;The minute you think of giving up, think of the reason why you held on so long&quot;</li></ul><ul id="1f2ff6cd-a2e6-4f8a-b4cd-cd90d8b3dbd9" class="bulleted-list"><li style="list-style-type:disc">&quot;I’m not telling you it is going to be easy, I’m telling you it’s going to be worth it&quot;</li></ul><ul id="2dd5a5ca-1bc0-4dd5-8c26-3f1b05dad309" class="bulleted-list"><li style="list-style-type:disc">&quot;When I focus on what’s good today, I have a good day. When I focus on what’s bad, I have a bad day. If I focus on the problem, the problem increases. If I focus on the answer, the answer increases.&quot; - Big book of Alcoholics Anonymous quote</li></ul><ul id="b9553f07-7683-42c3-a30f-046e970b1a7c" class="bulleted-list"><li style="list-style-type:disc">&quot;You&#x27;re not going to master the rest of your life in one day. Just relax. Master the day. Then just keep doing that every day.&quot; - Temp author</li></ul><ul id="aa826d65-b13f-42c9-b541-e5869dcb90e2" class="bulleted-list"><li style="list-style-type:disc">&quot;There is no shame in beginning again, for you get a chance to build bigger and better than before.&quot; - Temp author</li></ul><ul id="27fb4370-1fef-4109-8c55-83528249e51b" class="bulleted-list"><li style="list-style-type:disc">&quot;F-E-A-R has two meanings: &#x27;Forget Everything And Run&#x27; or &#x27;Face Everything And Rise.&#x27; The choice is yours.&quot; - Zig Ziglar</li></ul><ul id="4dac6e8e-63d9-4938-bd36-43809bc83e5b" class="bulleted-list"><li style="list-style-type:disc">&quot;Sometimes when in a dark place you think you&#x27;ve been buried, when actually you&#x27;ve been planted.&quot; - Christine Caine</li></ul><ul id="950cb211-ab04-4550-99da-3e0d9e188a29" class="bulleted-list"><li style="list-style-type:disc">&quot;If you do what you&#x27;ve always done, you&#x27;ll get what you&#x27;ve always gotten.&quot; - Tony Robbins</li></ul><ul id="bcf87b8c-17c5-4e02-8f9c-f616ca3c111b" class="bulleted-list"><li style="list-style-type:disc">&quot;One day you will tell your story of how you overcame what you went though and it will be someone else&#x27;s survival guide.&quot; - Brene Brown</li></ul><ul id="56f09a6f-868a-451c-865f-70f1ea9890b1" class="bulleted-list"><li style="list-style-type:disc">&quot;You don&#x27;t have to see the whole staircase. Just take the first step.&quot; - Martin Luther King</li></ul><ul id="3c29f84b-4dc9-4421-b540-40d526391c83" class="bulleted-list"><li style="list-style-type:disc">&quot;One day at a time - The idea of giving up alcohol or drugs for the rest of your life is overwhelming. The good news is that you do not have to do this. You can approach recovery one day at a time. You do not have to worry about what is going to happen tomorrow or next week. You just have to get up each morning and commit to staying sober for the rest of the day - you do not need to commit to anything more than that. By sticking to one day at a time, the days turn into weeks and the weeks turn into years.&quot; - Temp author</li></ul><ul id="94481c9c-0188-4b78-9e16-647bbfca9f8d" class="bulleted-list"><li style="list-style-type:disc">&quot;Addiction isn&#x27;t about alcohol and drugs. It&#x27;s the absence of self. This absence is described as a hole in your soul. You can&#x27;t love others when you&#x27;re empty inside. Recovery peels back the painful layers and heals that hole through connect, honest and hard work. To love oneself is the beginning of a lifetime of recovery.&quot; - Temp author</li></ul><ul id="4733b6ee-134d-4d0f-9988-0b099cf25bf7" class="bulleted-list"><li style="list-style-type:disc">“I didn’t get sober to be normal.” – Charlie Sheen</li></ul><ul id="9b0601ce-14be-4b3a-ae59-47cb3125615f" class="bulleted-list"><li style="list-style-type:disc">“The only way to change is to change your behavior every day.” – Russell Brand</li></ul><ul id="7d4daf00-384d-4877-adbf-8a5b68990f79" class="bulleted-list"><li style="list-style-type:disc">“I used to think a drug addict was someone who lived on the far edges of society. Wild-eyed, shaven-headed and living in a filthy squat. That was until I became one.” – Cathryn Kemp</li></ul><ul id="6b11ff9c-ed78-4d38-bec4-6fba9e759d37" class="bulleted-list"><li style="list-style-type:disc">“I don’t know who I am without drugs. But I don’t want to die chasing it anymore. I’ve had enough.” – Kelly Osbourne</li></ul><ul id="9bb5494f-5501-4fe7-8442-a6ba649ae7c8" class="bulleted-list"><li style="list-style-type:disc">“I don’t drink or drug anymore but that doesn’t mean my life is boring. It’s not. I still have a lot of fun.” – Jamie Lee Curtis</li></ul><ul id="e1de8733-e9a8-4f51-b015-097c7a6bc13b" class="bulleted-list"><li style="list-style-type:disc">“You can’t live a positive life with a negative mind.” – Miley Cyrus</li></ul><ul id="35353ab4-a2b9-484e-931d-c4a79851baa2" class="bulleted-list"><li style="list-style-type:disc">“I realized I had to quit drinking when I woke up on my bathroom floor and couldn’t remember how I got there.” – Bradley Cooper</li></ul><ul id="2c6bd0b9-19da-4351-902f-b1b8dd0d83dc" class="bulleted-list"><li style="list-style-type:disc">“Sobriety was the greatest gift I ever gave myself.” – Rob Lowe</li></ul><ul id="b743f19e-a81a-44a8-81c7-7a2b6a583c53" class="bulleted-list"><li style="list-style-type:disc">“It took me a long time to realize that if I wanted to be healthy and happy, I had to quit drinking.” – Chrissy Teigen</li></ul><ul id="c3c57365-fc5c-4333-9ead-55efa501849c" class="bulleted-list"><li style="list-style-type:disc">“Sobriety was the best thing that ever happened to me.” – Jamie Lee Curtis</li></ul><ul id="461fe086-acf4-4e1b-ae48-6ecd6c9ddb12" class="bulleted-list"><li style="list-style-type:disc">“I’m sober today and I’m going to be sober tomorrow, but it truly is just one day at a time.” – Eminem</li></ul><ul id="151a21b5-ee66-4577-bd6b-7f594a68aff8" class="bulleted-list"><li style="list-style-type:disc">“I don’t need alcohol to have a good time.” – Jennifer Lopez</li></ul><ul id="eed67dba-678e-448d-b236-c214724c6675" class="bulleted-list"><li style="list-style-type:disc">“My whole life changed when I decided to get sober.” – Matthew Perry</li></ul><ul id="963c75d8-03a3-4785-8b34-efeac1929930" class="bulleted-list"><li style="list-style-type:disc">“Recovery is an acceptance that your life is in shambles and you have to change it.” – James Taylor</li></ul><ul id="1c6f927d-2ff3-416b-b07f-a0a0704b1c81" class="bulleted-list"><li style="list-style-type:disc">“I was drinking to numb my emotions and feelings.” – Demi Lovato</li></ul><ul id="7226e21e-576f-4cc7-8cbf-2bf732440481" class="bulleted-list"><li style="list-style-type:disc">“I know I have fans out there who are going through the same struggles I did, and I just wanted to share my story with them.” – Kat Von D</li></ul><ul id="e538d4cb-c247-4bbe-80cc-b4e8312382a2" class="bulleted-list"><li style="list-style-type:disc">“You have to want to change. You have to use your pain as fuel to make a better life for yourself.” – Anthony Hopkins</li></ul><ul id="d262706b-b133-42c1-aba2-12e2566bf13d" class="bulleted-list"><li style="list-style-type:disc">“I realized that I didn’t want to wake up feeling like that anymore.” – Gerard Butler</li></ul><ul id="3945b5ec-9f9b-4cda-84d2-7b3bee4203bf" class="bulleted-list"><li style="list-style-type:disc">“The decision to quit drinking was one of the best decisions I ever made.” – Zac Efron</li></ul><ul id="75112a5f-d765-4c9e-a6e0-ff23a953022b" class="bulleted-list"><li style="list-style-type:disc">“I used to think that drugs and alcohol were really useful tools. That was before they became an addiction.” – Steven Tyler</li></ul><ul id="54fe412f-058d-49b7-80f4-6c38dea7b811" class="bulleted-list"><li style="list-style-type:disc">“I used to think that I couldn’t write unless I was under the influence of something. But it turns out that sobriety has opened up a whole new world of creativity for me.” – Stephen King</li></ul><ul id="a8674616-4f9b-4c2c-870e-3e7b6ef8e12e" class="bulleted-list"><li style="list-style-type:disc">“The greatest gift you can give yourself is sobriety.” – Robert Downey Jr.</li></ul><ul id="deed33db-8a48-4058-831b-e3b258fa4abf" class="bulleted-list"><li style="list-style-type:disc">“I never thought I could survive without drugs or alcohol. But it turns out that I’m stronger than I ever imagined.” – Eric Clapton</li></ul><ul id="035ec8c5-231a-4503-ba72-fc4dbe468434" class="bulleted-list"><li style="list-style-type:disc">“Addiction is a disease, and it’s nothing to be ashamed of. The important thing is to get help.” – Jamie Lee Curtis</li></ul><ul id="8a5fc7be-fc73-4dc3-8def-5ee0f7163fd0" class="bulleted-list"><li style="list-style-type:disc">“I thought that I was invincible. It took hitting rock bottom for me to realize that I wasn’t.” – Drew Barrymore</li></ul><ul id="e98db954-0298-4f5b-ada8-cdb2c6a20a1c" class="bulleted-list"><li style="list-style-type:disc">“Getting sober is a process, and it takes time. But it’s worth it.” – Bradley Cooper</li></ul><ul id="eb72a6c9-a40b-44d2-b57e-54e1e05cc921" class="bulleted-list"><li style="list-style-type:disc">“I’m grateful for every day that I wake up sober.” – Eminem</li></ul><ul id="44b583aa-54bc-4092-8e30-97c3ba1fe1f9" class="bulleted-list"><li style="list-style-type:disc">“Recovery is possible, and it’s beautiful.” – Kristen Johnston</li></ul><ul id="67f48790-f3dc-4f84-933f-a00d12644ac0" class="bulleted-list"><li style="list-style-type:disc">“I wouldn’t have a career today if I hadn’t gotten sober.” – Craig Ferguson</li></ul><ul id="29247228-6ff8-4112-b494-abe87803283b" class="bulleted-list"><li style="list-style-type:disc">“Sobriety doesn’t mean that life is perfect. But it does mean that you’re better equipped to handle whatever comes your way.” – Kat Von D</li></ul><ul id="1f01e2c2-73c8-4f65-87fe-84d3575bd927" class="bulleted-list"><li style="list-style-type:disc">“I chose sober because I wanted a better life. I stay sober because I got one.” ~ Anonymous</li></ul><ul id="9b1ff2d3-8a7a-418f-99d2-bbf32b8f8376" class="bulleted-list"><li style="list-style-type:disc">“You don’t have to see the whole staircase. Just take the first step.” ~ Martin Luther King</li></ul><ul id="f80b98e9-4e65-4ed1-bff9-32eed19384ca" class="bulleted-list"><li style="list-style-type:disc">“Your best days are ahead of you. The movie starts when the guy gets sober and puts his life back together; it doesn’t end there.” ~ Bucky Sinister</li></ul><ul id="9ecbd72c-e520-4960-80e9-0a6cf79d602a" class="bulleted-list"><li style="list-style-type:disc">“Being in recovery has given me everything of value that I have in my life. Integrity, honesty, fearlessness, faith, a relationship with God, and most of all gratitude. Sobriety was the best gift I ever gave myself.” ~ Rob Lowe</li></ul><ul id="646a3540-c9aa-4c19-a4e9-bba24dab0cee" class="bulleted-list"><li style="list-style-type:disc">“If you do what you’ve always done, you’ll get what you’ve always gotten.” ~ Tony Robbins</li></ul><ul id="20e47df5-ff34-47e9-ac3b-e2da3abf7e63" class="bulleted-list"><li style="list-style-type:disc">“I approach sobriety with the same mentality I approached sports with. You’re going to put in the time. You’ve got to suit up, show up, and keep your eyes on the win.” ~ Molly Bloom</li></ul><ul id="2b6fbd5d-fa0b-4cdc-9460-0d662e19c6e5" class="bulleted-list"><li style="list-style-type:disc">“When I focus on what’s good today, I have a good day. When I focus on what’s bad, I have a bad day. If I focus on the problem, the problem increases. If I focus on the answer, the answer increases.” ~ Alcoholics Anonymous</li></ul><ul id="9c634070-b89a-4124-9805-372f0f773ba6" class="bulleted-list"><li style="list-style-type:disc">“Rock bottom became the solid foundation on which I rebuilt my life.” ~ JK Rowlings</li></ul><ul id="2130ea0c-2140-46e8-bd9a-d153c22af7b3" class="bulleted-list"><li style="list-style-type:disc">“We have all had to learn painful lessons. We are all recovering from some mistake, loss, betrayal, abuse, injustice or misfortune. All of life is a process of recovery that never ends. We each must find ways to accept and move through the pain and to pick ourselves back up. Be patient with yourself.” ~ Bryant McGill</li></ul><ul id="3308975b-7a49-4abb-93d8-ba6b00077b85" class="bulleted-list"><li style="list-style-type:disc">“Breakthroughs don’t get planned, they are prepared for.” ~ Goitsemang Mvula</li></ul><ul id="a4ad2fcf-bddc-410d-bd8e-5a541e802b51" class="bulleted-list"><li style="list-style-type:disc">“It doesn’t matter how slowly you go, only that you do not stop.” ~ Confucius</li></ul><ul id="79462e1e-89c0-4273-8013-3f8c4d014a45" class="bulleted-list"><li style="list-style-type:disc">“F-E-A-R has two meanings: ‘Forget Everything And Run’ or ‘Face Everything And Rise.’ The choice is yours.” ~ Zig Ziglar</li></ul><ul id="246cd860-eb49-41e4-9801-c95c9528c8cd" class="bulleted-list"><li style="list-style-type:disc">“When I got sober, I thought giving up was saying goodbye to all the fun and all the sparkle, and it turned out to be just the opposite. That’s when the sparkle started for me.” ~ Mary Karr</li></ul><ul id="10cfa64e-b0bc-4fc3-88ca-2d22a24a98e4" class="bulleted-list"><li style="list-style-type:disc">“Somebody once asked me how I define sobriety and my response was ‘liberation from dependence’.” ~ Leslie Jamison</li></ul><ul id="f610ca96-d1d4-40cd-b52a-904d481549e9" class="bulleted-list"><li style="list-style-type:disc">“Above anything else—above family or job—the main thing is staying sober. That’s because without being sober, I don’t have a family or a job.” ~ William Regal</li></ul><ul id="a6ec0324-3a94-445c-9649-ab696729d0a5" class="bulleted-list"><li style="list-style-type:disc">“One day, you’ll tell your story of how you overcame what you went through, and it will be someone else’s survival guide.” ~ Brene Brown</li></ul><ul id="df0d7350-03ca-44eb-bc08-cb932ed89d6c" class="bulleted-list"><li style="list-style-type:disc">“I affirm and encourage others, as I do myself.”</li></ul><ul id="da17e7df-0a8b-458b-9d45-6efee48c1fff" class="bulleted-list"><li style="list-style-type:disc">“I am capable of balancing ease and effort in my life.”</li></ul><ul id="75a64388-ae1f-4fac-91d1-e5213cc0b3f6" class="bulleted-list"><li style="list-style-type:disc">“I am worthy of investing in myself.”</li></ul><ul id="19f5acb0-8ceb-4f29-901e-466e4c88f6df" class="bulleted-list"><li style="list-style-type:disc">“Asking for help is a sign of self-respect and self-awareness.”</li></ul><ul id="5ab59da9-4ee0-483b-8f7d-4dbef0ddb32b" class="bulleted-list"><li style="list-style-type:disc">“I grow towards my interests, like a plant reaching for the sun.”</li></ul><ul id="06e19e2d-b807-4e13-8118-0adeb1be177e" class="bulleted-list"><li style="list-style-type:disc">“I do not have to linger in dark places; there is help for me here.”</li></ul><ul id="a8f1479d-b2b6-49af-a44f-9b64c547aad0" class="bulleted-list"><li style="list-style-type:disc">“I am open. I am healing. I am happy.”</li></ul><ul id="9c92de92-215e-4986-b5b6-f3cd8451ddef" class="bulleted-list"><li style="list-style-type:disc">“I am growing, and I am going at my own pace.”</li></ul><ul id="b25d611c-b372-4f02-ac52-203618ef5db0" class="bulleted-list"><li style="list-style-type:disc">“I release the fears that do not serve me.”</li></ul><ul id="55813ed0-542b-4980-b233-b98f6edc54a0" class="bulleted-list"><li style="list-style-type:disc">“I celebrate the good qualities in others and myself.”</li></ul><ul id="a60bbd0a-abf4-4d83-887a-2b996fd185ba" class="bulleted-list"><li style="list-style-type:disc">“I invite art and music into my life.”</li></ul><ul id="3fc4bf32-5270-485c-abcc-4df095ef0287" class="bulleted-list"><li style="list-style-type:disc">“I can hold two opposing feelings at once; it means I am processing.”</li></ul><ul id="87f3b4fd-193d-47ad-b62d-cf5b1aa7dcca" class="bulleted-list"><li style="list-style-type:disc">“I nourish myself with kind words and joyful foods.”</li></ul><ul id="f324381a-2895-43e9-bbd5-6e8963344dc2" class="bulleted-list"><li style="list-style-type:disc">“I am proof enough of who I am and what I deserve.”</li></ul><ul id="56cbd492-eec9-4dc5-a944-e3bc6919b5ea" class="bulleted-list"><li style="list-style-type:disc"><strong>“Believe you can, and you’re halfway there.” – Theodore Roosevelt</strong></li></ul><ul id="aab1e8ad-9b69-47a2-a33f-b34ac9a78bae" class="bulleted-list"><li style="list-style-type:disc">“I avoid looking forward or backward, and try to keep looking upward.” – Charlotte Brontë</li></ul><ul id="5895de65-fc42-40b0-8038-1b1afcb86b47" class="bulleted-list"><li style="list-style-type:disc"><strong>“I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion.’” – Muhammad Ali</strong></li></ul><ul id="dc33697b-f672-4613-8bb5-bd41cbae31fe" class="bulleted-list"><li style="list-style-type:disc">“Our greatest glory is not in never failing, but in rising up every time we fail.” – Ralph Waldo Emerson</li></ul><ul id="1d5e8aa3-ad20-4e5b-afc6-9631ccc38503" class="bulleted-list"><li style="list-style-type:disc"><strong>“Every worthy act is difficult. Ascent is always difficult. Descent is easy and often slippery.” – Mahatma Gandhi</strong></li></ul><ul id="8cfd7450-f0b2-4d4f-b962-47bbd34a2e22" class="bulleted-list"><li style="list-style-type:disc">“It is by going down into the abyss that we recover the treasures of life. Where you stumble, there lies your treasure.” – Joseph Campbell</li></ul><ul id="09a8c80b-8b45-4324-bbc3-8dded458641a" class="bulleted-list"><li style="list-style-type:disc"><strong>“The great thing in this world is not so much where you stand as what direction you are moving.” – Oliver Wendell Holmes</strong></li></ul><ul id="4b51e682-dc9d-44eb-84de-5f8ecbe24b09" class="bulleted-list"><li style="list-style-type:disc">“I’ve been absolutely terrified every moment of my life – and I’ve never let it keep me from doing a single thing I wanted to do.” – Georgia O’Keeffe</li></ul><ul id="05b419b0-1d1f-44cc-a592-ccb2b9d15789" class="bulleted-list"><li style="list-style-type:disc"><strong>“If you accept the expectations of others, especially negative ones, then you never will change the outcome.” – Michael Jordan</strong></li></ul><ul id="3e401406-8bfe-4a31-9b8a-731ae7d136a9" class="bulleted-list"><li style="list-style-type:disc">“People often say that motivation doesn’t last. Neither does bathing. That’s why we recommend it daily.” – Zig Ziglar</li></ul><ul id="2df2564e-fe28-4ca4-95e8-d5def261b414" class="bulleted-list"><li style="list-style-type:disc"><strong>“Success is the sum of small efforts, repeated day in and day out.” – Robert Collier</strong></li></ul><ul id="ab81a65b-278e-4fe1-8fc7-afe28e5caf2a" class="bulleted-list"><li style="list-style-type:disc">“Tomorrow is the most important thing in life; it comes to us at midnight very clean. It’s perfect when it arrives, and it puts itself in our hands. It hopes we’ve learned something from yesterday.” – John Wayne</li></ul><ul id="55c35680-9d1a-42a5-ac04-25b5611cf7f7" class="bulleted-list"><li style="list-style-type:disc"><strong>“If you can quit for a day, you can quit for a lifetime.” – Benjamin Alire Sáenz</strong></li></ul><ul id="53291632-b7ad-4983-b364-ad87b074b902" class="bulleted-list"><li style="list-style-type:disc"><em>“</em>Fall seven times, stand up eight.” – Japanese proverb</li></ul><ul id="593fcb66-252e-472c-9559-caccadb378b7" class="bulleted-list"><li style="list-style-type:disc"><strong>“Either you run the day, or the day runs you.” – Jim Rohn</strong></li></ul><ul id="e96a7f41-d6b1-4122-9409-e194abd77bc7" class="bulleted-list"><li style="list-style-type:disc">“Every strike brings me closer to the next home run.” – Babe Ruth</li></ul><ul id="667794f6-6784-4e00-a3b7-2a9cfb4c308c" class="bulleted-list"><li style="list-style-type:disc"><strong>“Life is like riding a bicycle. To keep your balance, you must keep moving.” – Albert Einstein</strong></li></ul><ul id="c49e1229-35b6-4f53-8303-8947d042f1a9" class="bulleted-list"><li style="list-style-type:disc">“When you rise in the morning, think of what a privilege it is to be alive, to think, to enjoy, to love …” ―Marcus Aurelius</li></ul><ul id="a71a03b2-5923-4036-8c11-f4774a640121" class="bulleted-list"><li style="list-style-type:disc"><strong>“Sometimes you can only find Heaven by slowly backing away from Hell.” – Carrie Fisher</strong></li></ul><ul id="a1472fa3-ac37-423b-85b8-84c0c54e0586" class="bulleted-list"><li style="list-style-type:disc">“It is 10 years since I used drugs or alcohol and my life has improved immeasurably. I have a job, a house, a cat, good friendships and, generally, a bright outlook… The price of this is constant vigilance because the disease of addiction is not rational.” – Russell Brand</li></ul><ul id="f57e8891-3363-41f1-9001-d10b09fea4f0" class="bulleted-list"><li style="list-style-type:disc"><strong>“Getting sober was one of the three pivotal events in my life, along with becoming an actor and having a child. Of the three, finding my sobriety was the hardest.” – Robert Downey Jr.</strong></li></ul><ul id="ba5eab91-0734-4d08-861f-fb160eca810c" class="bulleted-list"><li style="list-style-type:disc">“I understood, through rehab, things about creating characters. I understood that creating whole people means knowing where we come from, how we can make a mistake and how we overcome things to make ourselves stronger.” – Samuel L. Jackson</li></ul><ul id="408ed2c4-fb67-43db-84ee-1e43025012cf" class="bulleted-list"><li style="list-style-type:disc"><strong>“Once I was clear-headed, and I hadn’t been clear-headed in so long, I was like, I can never go back. And I’m still thankful.” – Travis Barker</strong></li></ul><ul id="1bb43eb6-4ae6-4018-a01b-43fd8ffbf6d8" class="bulleted-list"><li style="list-style-type:disc">“I got sober. I stopped killing myself with alcohol. I began to think: ‘Wait a minute – if I can stop doing this, what are the possibilities?’ And slowly it dawned on me that it was maybe worth the risk.” ― Craig Ferguson</li></ul><ul id="c751bdab-5556-4208-96e1-db620477c03c" class="bulleted-list"><li style="list-style-type:disc"><strong>“I realized that I only had two choices: I was either going to die or I was going to live, and which one did I want to do? And then I said those words, ‘I’ll get help,’ or, ‘I need help. I’ll get help.’ And my life turned around. Ridiculous for a human being to take 16 years to say, ‘I need help.’” – Sir Elton John</strong></li></ul><ul id="b077606b-f9fc-4d98-a575-ca1d4b309488" class="bulleted-list"><li style="list-style-type:disc">“My recovery from drug addiction is the single greatest accomplishment of my life… but it takes work — hard, painful work — but the help is there, in every town and career, drug/drink freed members of society, from every single walk and talk of life to help and guide.” – Jamie Lee Curtis</li></ul><ul id="1c8e59c6-9b50-435b-8b4b-4b9484662fe1" class="bulleted-list"><li style="list-style-type:disc"><strong>“If it wasn’t for that rehab center, I probably wouldn’t have been here. In terms of recovery, it has been very important for me to be a part of a recovery community, to actively be around my people because they understand me. They get it.” – Macklemore</strong></li></ul><ul id="2493d73f-42e0-4b83-b7d0-0f1cb624f5b8" class="bulleted-list"><li style="list-style-type:disc">“Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.” – Carl Bard</li></ul><ul id="28cc7e5a-ca11-4863-a313-e7d5acbe7838" class="bulleted-list"><li style="list-style-type:disc"><strong>“Everyone has inside of him a piece of good news. The good news is that you don’t know how great you can be! How much you can love! What you can accomplish! And what your potential is!” – Anne Frank</strong></li></ul><ul id="7de2ffe3-4aec-4c07-9300-5e8122933ed3" class="bulleted-list"><li style="list-style-type:disc">“What progress, you ask, have I made? I have begun to be a friend to myself.” – Hecato</li></ul><ul id="80a68135-7d9f-42d1-b9bc-6d5bc5ff780e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Find the seed at the bottom of your heart and bring forth a flower.” – Shigenori Kameoka</strong></li></ul><ul id="f4f4c737-1c90-4eb1-baf2-1e7be0a5620e" class="bulleted-list"><li style="list-style-type:disc">“What makes the desert beautiful is that somewhere it hides a well.” – Antoine de Saint-Exupery</li></ul><ul id="312ee9a3-67cc-4f9e-bba4-a7fc21356e67" class="bulleted-list"><li style="list-style-type:disc"><strong>“All the suffering, stress, and addiction comes from not realizing you already are what you are looking for. “– Jon Kabat-Zinn</strong></li></ul><ul id="2d2527ec-e685-40ae-a49e-79e198e4cebe" class="bulleted-list"><li style="list-style-type:disc">“People spend a lifetime searching for happiness, looking for peace. They chase idle dreams, addictions, religions, and even other people, hoping to fill the emptiness that plagues them. The irony is the only place they ever needed to search was within.” – Ramona L. Anderson</li></ul><ul id="c5c74889-6403-4d34-b253-7531604f08f0" class="bulleted-list"><li style="list-style-type:disc"><strong>“The most common way people give up their power is by thinking they don’t have any.” – Alice Walker</strong></li></ul><ul id="44c00140-caf2-44f4-8e99-73a65ad836e5" class="bulleted-list"><li style="list-style-type:disc">“Be yourself; everyone else is already taken.” – Oscar Wild</li></ul><ul id="b4b808eb-d9ea-42b2-b06c-e460fbda2580" class="bulleted-list"><li style="list-style-type:disc">“It always seems impossible until it’s done.” – Nelson Mandela</li></ul><ul id="afb0a089-1f9f-4b6b-8c6c-40571f25ab07" class="bulleted-list"><li style="list-style-type:disc"><strong>“In the midst of winter, I found there was, within me, an invincible summer. And that makes me happy. For it says that no matter how hard the world pushes against me, within me, there’s something stronger — something better, pushing right back.” – Albert Camus</strong></li></ul><ul id="8bfc3e4b-12fa-4b55-a533-080e31c6bd5c" class="bulleted-list"><li style="list-style-type:disc">“Character cannot be developed in ease and quiet. Only through experience of trial and suffering can the soul be strengthened, ambition inspired, and success achieved.” – Helen Keller</li></ul><ul id="74b5e8e8-4eaa-4725-a11c-ffb7520d4afe" class="bulleted-list"><li style="list-style-type:disc"><strong>“We may think there is willpower involved, but more likely … change is due to want power. Wanting the new addiction more than the old one. Wanting the new me in preference to the person I am now.” – George Sheehan</strong></li></ul><ul id="18c6ea3a-0cd7-4580-a37d-187526c72341" class="bulleted-list"><li style="list-style-type:disc">“Man never made any material as resilient as the human spirit.” – Bernard Williams</li></ul><ul id="ba9e65dd-9182-4b73-9ade-115951607adf" class="bulleted-list"><li style="list-style-type:disc"><strong>“You can come out of the furnace of trouble two ways: if you let it consume you, you come out a cinder; but there is a kind of metal which refuses to be consumed, and comes out a star.”– Jean Church</strong></li></ul><ul id="326e4c4f-3507-4de2-aafc-9d8f230e75ae" class="bulleted-list"><li style="list-style-type:disc">“I have learned over the years that when one’s mind is made up, this diminishes fear.” – Rosa Parks</li></ul><ul id="32bf0e57-48a5-4a53-8aa0-82e07c0c5f95" class="bulleted-list"><li style="list-style-type:disc"><strong>“Hardships often prepare ordinary people for an extraordinary destiny.”– C.S. Lewis</strong></li></ul><ul id="d83390da-5cda-46f6-9410-373fd36bad7f" class="bulleted-list"><li style="list-style-type:disc">“Sometimes we motivate ourselves by thinking of what we want to become. Sometimes we motivate ourselves by thinking about who we don’t ever want to be again.”– Shane Niemeyer</li></ul><ul id="f9b87704-f52c-4e87-8d18-93238932a504" class="bulleted-list"><li style="list-style-type:disc"><strong>“When we meet real tragedy in life, we can react in two ways – either by losing hope and falling into self-destructive habits, or by using the challenge to find our inner strength. Thanks to the teachings of Buddha, I have been able to take this second way.” – Dalai Lama</strong></li></ul><ul id="de3437db-92b9-47e6-8530-ecf3cec4e060" class="bulleted-list"><li style="list-style-type:disc">“Cause sometimes you just feel tired. Feel weak, and when you feel weak, you feel like you wanna just give up. But you gotta search within you. You gotta find that inner strength. And just pull it out of you, and get that motivation to not give up, and not be a quitter, no matter how bad you wanna just fall flat on your face.” – Eminem</li></ul><ul id="8388fa62-8e51-4418-8b7b-9b0895f02556" class="bulleted-list"><li style="list-style-type:disc"><strong>“Life is not easy for any of us. But what of that? We must have perseverance and, above all, confidence in ourselves. We must believe that we are gifted forsomething, and that this thing, at whatever cost, must be attained.” – Marie Curie</strong></li></ul><ul id="3ee234b4-ac11-4498-a2f7-a0d7e4c88d9b" class="bulleted-list"><li style="list-style-type:disc">“Life has many ways of testing a person’s will, either by having nothing happen at all or by having everything happen all at once.” – Paulo Coelho</li></ul><ul id="4ee07355-583b-45ee-b741-5edb9b40c588" class="bulleted-list"><li style="list-style-type:disc"><strong>“Today you are You, that is truer than true. There is no one alive who is Youer than You.” – Dr. Seuss</strong></li></ul><ul id="72f7287c-09c5-4f67-bb0d-e449481c71be" class="bulleted-list"><li style="list-style-type:disc"><strong>“Nothing is impossible; the word itself says, ‘I’m possible!’” – Audrey Hepburn</strong></li></ul><ul id="2f625de0-6c87-4a14-84e6-76adc29a921f" class="bulleted-list"><li style="list-style-type:disc">“What lies behind us and what lies before us are tiny matters compared to what lies within us.” – Ralph Waldo Emerson</li></ul><ul id="8e1ec357-ba27-4d94-b069-398971bc581b" class="bulleted-list"><li style="list-style-type:disc"><strong>“I can’t change the direction of the wind, but I can adjust my sails to always reach my destination.” – Jimmy Dean</strong></li></ul><ul id="f0813ac0-4fc7-48cc-af3e-86595475432b" class="bulleted-list"><li style="list-style-type:disc">“I dwell in possibility.” – Emily Dickinson</li></ul><ul id="11776c79-fb63-4af1-b082-fe6649a78291" class="bulleted-list"><li style="list-style-type:disc"><strong>“Don’t let the past steal your present.” –Terri Guillemets</strong></li></ul><ul id="6e5fd524-c3bb-4831-a005-64d4b3488312" class="bulleted-list"><li style="list-style-type:disc">“Addiction begins with the hope that something “out there” can instantly fill up the emptiness inside.” – Jean Kilbourne</li></ul><ul id="fc9c935d-3ac5-41c7-844c-a5e5ed34afd4" class="bulleted-list"><li style="list-style-type:disc"><strong>“Hope is a good thing, maybe even the best of things, and good things never die.” – Stephen King</strong></li></ul><ul id="cb4956ff-7618-4ce0-9cdb-75d04c57d431" class="bulleted-list"><li style="list-style-type:disc">“The only journey is the one within.” – Rainer Maria Rilke</li></ul><ul id="4bd6216a-b794-49fe-b8b0-bdce3ecbd3d2" class="bulleted-list"><li style="list-style-type:disc"><strong>“Every experience in your life is being orchestrated to teach you something you need to know to move forward.” – Brian Tracy</strong></li></ul><ul id="8f179b76-d2f6-4a34-996d-65bc97c73eb4" class="bulleted-list"><li style="list-style-type:disc">“When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.” – Henry Ford</li></ul><ul id="5fa4ea01-8f2f-4241-b86d-5cd7f679d985" class="bulleted-list"><li style="list-style-type:disc"><strong>“If things go wrong, don’t go with them.” – Roger Babson</strong></li></ul><ul id="94ff5d43-1ee4-479b-bcb4-bf9c1797b2aa" class="bulleted-list"><li style="list-style-type:disc">“Every noble work is at first impossible.” – Thomas Carlyle</li></ul><ul id="9d6c981a-e028-4e8f-aa14-837d952ee7c2" class="bulleted-list"><li style="list-style-type:disc"><strong>“Experience is not what happens to you, it is what you do with what happens to you.” – Aldous Huxley</strong></li></ul><ul id="2c6b6412-f6e5-49ac-8a37-30040c5c0276" class="bulleted-list"><li style="list-style-type:disc">“We can’t solve problems by using the same kind of thinking we used when we created them.” – Albert Einstein</li></ul><ul id="18d52701-4104-47ce-89c7-9dbc05c99b8e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Whether you think you can or you think you can’t, you’re right.” – Henry Ford</strong></li></ul><ul id="fb8d9804-b44d-4e93-a961-3ef4c0d4849d" class="bulleted-list"><li style="list-style-type:disc">“The only person you are destined to become is the person you decide to be.” – Ralph Waldo Emerson</li></ul><ul id="1930ad35-9a80-4db5-8e7d-ed2a41730845" class="bulleted-list"><li style="list-style-type:disc"><strong>“The best way out is always through.” – Robert Frost</strong></li></ul><ul id="14200d9d-e164-4a8b-9312-85fb20c15667" class="bulleted-list"><li style="list-style-type:disc">“Don’t judge each day by the harvest you reap but by the seeds that you plant.” – Robert Louis Stevenson</li></ul><ul id="fec8e1a5-6e0e-4349-bbc1-af0a8b8b9898" class="bulleted-list"><li style="list-style-type:disc"><strong>“As one goes through life, one learns that if you don’t paddle your own canoe, you don’t move.” – Katharine Hepburn</strong></li></ul><ul id="19032082-a6ec-484a-8ad1-9c34fb548c45" class="bulleted-list"><li style="list-style-type:disc">“Amazing how we can light tomorrow with today.” – Elizabeth Barrett Browning</li></ul><ul id="0ce95d99-67b3-4fe5-9c4e-6d39a13d273e" class="bulleted-list"><li style="list-style-type:disc"><strong>“When you get into a tight place and everything goes against you, till it seems you could not hang on a minute longer, never give up then, for that is just the place and time that the tide will turn.” – Harriet Beecher Stowe</strong></li></ul><ul id="a1a96d50-acd3-4f6e-a4ed-3fbb724dac4e" class="bulleted-list"><li style="list-style-type:disc">“Keep steadily before you the fact that all true success depends at last upon yourself.” – Theodore T. Hunger</li></ul><ul id="68a8d3c2-f5dd-4682-b82e-71711d115ede" class="bulleted-list"><li style="list-style-type:disc"><strong>“The best time to plant a tree was 20 years ago. The second best time is now.”</strong></li></ul><ul id="91a3f6ea-c399-4cd9-88f6-40ed55c438a8" class="bulleted-list"><li style="list-style-type:disc">“If we are facing in the right direction, all we have to do is keep on walking.’</li></ul><ul id="b6f66f82-684e-4dec-a3c8-69a461c92372" class="bulleted-list"><li style="list-style-type:disc"><strong>“Patience and the mulberry leaf becomes a silk gown.”</strong></li></ul><ul id="5b545700-1284-4137-b1e4-193bad14818b" class="bulleted-list"><li style="list-style-type:disc">“Happiness is where we find it, but rarely where we seek it.”</li></ul><ul id="bf7f2a67-761d-43e5-978f-562290732be4" class="bulleted-list"><li style="list-style-type:disc"><strong>“Adapt the remedy to the disease.”</strong></li></ul><ul id="a23a6bef-d25b-40d5-8e84-1155dece44e3" class="bulleted-list"><li style="list-style-type:disc">“Control your emotions or they will control you.”</li></ul><ul id="db74b76a-0605-4ad3-81da-f367105da99b" class="bulleted-list"><li style="list-style-type:disc"><strong>“A wise man adapts himself to circumstances, as water shapes itself to the vessel that contains it.”</strong></li></ul><ul id="e4f6f9e2-be23-4648-a577-c13dc8e7cac7" class="bulleted-list"><li style="list-style-type:disc">“With true friends…even water drunk together is sweet enough.”</li></ul><ul id="a6c95476-d1dd-4fa6-9757-9e55b715b30a" class="bulleted-list"><li style="list-style-type:disc"><strong>“Either do not begin or, having begun, do not give up.”</strong></li></ul><ul id="581ba153-f5d0-4d56-89de-b0e48c918ba7" class="bulleted-list"><li style="list-style-type:disc">“If you want happiness for an hour, take a nap. If you want happiness for a day, go fishing. If you want happiness for a year, inherit a fortune. If you want happiness for a lifetime, help somebody.”</li></ul><ul id="947644fc-7b94-4804-8546-cb460e3558f5" class="bulleted-list"><li style="list-style-type:disc"><strong>“It is easy to get a thousand prescriptions but hard to get one single remedy.”</strong></li></ul><ul id="40666ce4-9ad1-4afd-b603-d9ff73bf288a" class="bulleted-list"><li style="list-style-type:disc">“First the man takes a drink, then the drink takes a drink, then the drink takes a man.”</li></ul><ul id="a86daa4d-8430-4e3e-92dc-34f2f8f31119" class="bulleted-list"><li style="list-style-type:disc"><strong>“It is better to take many small steps in the right direction than to make a great leap forward only to stumble backward.”</strong></li></ul><ul id="85204723-ab67-46dc-bdaf-496c51c7124f" class="bulleted-list"><li style="list-style-type:disc">“I’ve wanted to feel pleasure to the point of insanity. They call it ‘getting high,’ because it’s wanting to know that higher level, that godlike level. You want to touch the heavens, you want to feel glory and euphoria, but the trick is it takes work.” – Anthony Kiedis</li></ul><ul id="0e2695a1-fcc5-4656-9395-ef44afbfb52c" class="bulleted-list"><li style="list-style-type:disc"><strong>“Getting sober was one of the three pivotal events in my life, along with becoming an actor and having a child. Of the three, finding my sobriety was the hardest thing.” – Gary Oldman</strong></li></ul><ul id="202193f5-92bb-4bb4-a7cd-4220e78b33d1" class="bulleted-list"><li style="list-style-type:disc">“It’s been a learning process, I’m growing. I couldn’t believe that anybody could be naturally happy without being on something. So I would say to anybody, ‘it does get better.’” – Eminem</li></ul><ul id="314a5e8b-5875-476a-b1c7-875210a2ec36" class="bulleted-list"><li style="list-style-type:disc"><strong>“If you hear a voice within you say ‘you cannot paint,’ then by all means paint and that voice will be silenced.” – Vincent Van Gogh</strong></li></ul><ul id="e534ddeb-96fc-43b9-970f-68cd1e6365b7" class="bulleted-list"><li style="list-style-type:disc">“I have absolutely no pleasure in the stimulants in which I sometimes so madly indulge. It has not been in the pursuit of pleasure that I have periled life and reputation and reason. It has been the desperate attempt to escape from torturing memories, from a sense of insupportable loneliness and a dread of some strange impending doom.” ― Edgar Allan Poe</li></ul><ul id="e7ed083f-8337-4bc9-a998-103c681160ba" class="bulleted-list"><li style="list-style-type:disc"><strong>“And that’s what it’s like for me in recovery at times. Afraid to take on responsibility, new sponsees or something, or allowing myself to stand up and shine… I’ve got new tools, I’ve got new hope, new love, new respect for myself.” – James Hetfield</strong></li></ul><ul id="1af923ae-4a4c-40f3-8386-663973f5f7a6" class="bulleted-list"><li style="list-style-type:disc">“I’ve been sober for 18 years now. It wasn’t like you flick a switch, and you’re sober. It takes a while. You have to learn how to do everything all over again. There is life after addiction, and it’s really good. If I had known, I’d havestopped earlier.” – Joe Walsh</li></ul><ul id="41ff5f9b-5264-40e1-855c-b5db28caf37c" class="bulleted-list"><li style="list-style-type:disc"><strong>“I went to hell and back, but I wouldn’t have it any other way. Then I wouldn’t be in the position I’m in, happy about life and comfortable in my skin.” – Drew Barrymore</strong></li></ul><ul id="30f03b1c-35f0-44ee-b033-edb855983ea2" class="bulleted-list"><li style="list-style-type:disc">“A lot of people think that addiction is a choice. A lot of people think it’s a matter of will. That has not been my experience. I don’t find it to have anything to do with strength.” –Matthew Perry</li></ul><ul id="1aff74fe-c57f-46f7-bfc7-aa479b7bf0b4" class="bulleted-list"><li style="list-style-type:disc"><strong>“I think that the power is the principle. The principle of moving forward, as though you have the confidence to move forward, eventually gives you confidence when you look back and see what you’ve done.” – Robert Downey Jr.</strong></li></ul><ul id="69ac5b0a-5b91-4a4b-82ca-dab652eac468" class="bulleted-list"><li style="list-style-type:disc">“Rock bottom became the solid foundation on which I rebuilt my life.” – J.K. Rowling</li></ul><ul id="58438d9d-8cb7-4602-a81d-29708a8be7d7" class="bulleted-list"><li style="list-style-type:disc"><strong>“Not feeling is no replacement for reality. Your problems today are still your problems tomorrow.” – Larry Michael Dredla</strong></li></ul><ul id="e05a542f-da4d-4319-a7a3-a31c3bd7b25b" class="bulleted-list"><li style="list-style-type:disc">“What is an addiction, really? It is a sign, a signal, a symptom of distress. It is a language that tells us about a plight that must be understood.” – Alice Miller</li></ul><ul id="1e1de373-76c2-482b-98e6-3b56edd081f4" class="bulleted-list"><li style="list-style-type:disc"><strong>“The greatest mistake you can make in life is to continually be afraid you will make one.” – Elbert Hubbard</strong></li></ul><ul id="b41ed550-1b41-480e-a414-83b3591b20dc" class="bulleted-list"><li style="list-style-type:disc">“Turn your face to the sun and the shadows fall behind you.” – Charlotte Whitton</li></ul><ul id="536236a0-cf26-41ed-88bc-1cf6c04efac6" class="bulleted-list"><li style="list-style-type:disc"><strong>“You must do the things you think you cannot do.” – Eleanor Roosevelt</strong></li></ul><ul id="03a35118-167c-4d72-840f-c2e47c7c26b6" class="bulleted-list"><li style="list-style-type:disc"><strong>“I am not defined by my relapses, but by my decision to remain in recovery despite them.” (Anonymous)</strong></li></ul><ul id="15147230-2b7a-4213-bb12-8cdb1395db9d" class="bulleted-list"><li style="list-style-type:disc">As the song says, “I pick myself up, dust myself off, start all over again”</li></ul><ul id="e08967d3-9cab-4a12-a1c4-484782d53651" class="bulleted-list"><li style="list-style-type:disc"><strong>“The only requirement for A.A. membership is a desire to stop drinking” (Alcoholics Anonymous)</strong></li></ul><ul id="cb457dff-2474-42c7-8e2c-c901e4454ca9" class="bulleted-list"><li style="list-style-type:disc">The people who recover from alcohol abuse are those who want to.</li></ul><ul id="936f58c0-a4cc-49f8-a2c9-28311ea1baf9" class="bulleted-list"><li style="list-style-type:disc"><strong>“Remember that just because you hit bottom doesn’t mean you have to stay there.” (Robert Downey Jr)</strong></li></ul><ul id="13bd4d00-7fb6-4bc2-9a50-8ca2ee1645e7" class="bulleted-list"><li style="list-style-type:disc">When you hit rock bottom, you can’t start to dig, so rather choose to rise.</li></ul><ul id="6b3af87c-c7d7-466a-a195-481ae8e8c793" class="bulleted-list"><li style="list-style-type:disc"><strong>“I got a message, a little thought, that said, ‘Do you want to live or die?’ I said I wanted to live. And suddenly the relief came and my life has been amazing.” (Anthony Hopkins)</strong></li></ul><ul id="11af722b-97dd-4368-8003-58836105e679" class="bulleted-list"><li style="list-style-type:disc">There is a point in addiction where the substance is the most important thing. That is when life or death is the only choice left.</li></ul><ul id="95073881-9806-4217-88bd-86ebfc20dad5" class="bulleted-list"><li style="list-style-type:disc"><strong>“When everything seems like an uphill struggle, just think of the view from the top.” (Anonymous)</strong></li></ul><ul id="c6d3d8fe-7ed4-4d45-b90b-51353af486cc" class="bulleted-list"><li style="list-style-type:disc">We hike up mountains not because it is easy, but for that amazing view.</li></ul><ul id="deed8be7-5303-48ac-bc50-77b3abb6e858" class="bulleted-list"><li style="list-style-type:disc"><strong>“The greatest gift of sobriety is being there for the people I should have been there for when I was drinking.” (Anonymous)</strong></li></ul><ul id="590eb598-a75d-4c1b-81ef-594ce43109a2" class="bulleted-list"><li style="list-style-type:disc">This is one of the most wonderful things about recovery.</li></ul><ul id="455f1c5d-a81f-4cd5-956f-5c8b6b2bc895" class="bulleted-list"><li style="list-style-type:disc"><strong>“I have my off days and sometimes little bits of doubt and all that but all in all I say, hang in there. Today is the tomorrow you were so worried about yesterday.” (Anthony Hopkins)</strong></li></ul><ul id="46c2c3cd-fc1f-4cca-86b8-a4b2f4b700d0" class="bulleted-list"><li style="list-style-type:disc">There are times when it feels like the recovery process is a matter of hanging in there.</li></ul><ul id="6d43c458-29d3-4378-97b7-57827b20c709" class="bulleted-list"><li style="list-style-type:disc"><strong>“If we are facing in the right direction, all we have to do is keep on walking.” (Zen Proverb)</strong></li></ul><ul id="adb49eaf-79ac-4e2e-a825-7e8bebfa8280" class="bulleted-list"><li style="list-style-type:disc">If we keep walking then every day we become a better version of ourselves.</li></ul><ul id="dfc0520e-0aab-49e4-80d5-c487df6347da" class="bulleted-list"><li style="list-style-type:disc"><strong>“Recovery is not for people who need it. It’s for people who want it.” (Anonymous)</strong></li></ul><ul id="833576e8-1b47-4ec0-811a-16fccc0e98fb" class="bulleted-list"><li style="list-style-type:disc">People forced to go to AA meetings, seldom stay.</li></ul><ul id="ab6eab0b-8c69-42a8-8b57-f16080c5f68e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Recovery is taking all twelve steps…over and over and over and over…” – Toni Sorenson</strong></li></ul><ul id="5d1fe11e-2377-496c-858f-44711c82dc66" class="bulleted-list"><li style="list-style-type:disc">Through repetition, the right decisions start to come naturally.</li></ul><ul id="26c15050-1523-452c-b3d6-afe934da917b" class="bulleted-list"><li style="list-style-type:disc"><strong>“My sobriety anniversary means so much to me because I feel like the day that I got sober was the day that I actually started living and so I like to call myself five years old.” (Demi Lovato)</strong></li></ul><ul id="76f55692-1497-4104-a7b9-4f5541b492d4" class="bulleted-list"><li style="list-style-type:disc">Each day of sobriety is among the best days.</li></ul><ul id="75e81957-f817-4db8-93f2-124d0173a3c2" class="bulleted-list"><li style="list-style-type:disc"><strong>“Success is the sum of small efforts, repeated day in and day out.” – Robert Collier</strong></li></ul><ul id="f9f62724-2f1b-44d5-b5ca-dd983d492f46" class="bulleted-list"><li style="list-style-type:disc">The path out of alcohol addiction is small efforts every day.</li></ul><ul id="3a260dc9-6877-453e-8639-7c51ea55edbb" class="bulleted-list"><li style="list-style-type:disc"><strong>“Help is there, in every town and career, drug/drink freed members of society, from every single walk and talk of life to help and guide.” – Jamie Lee Curtis</strong></li></ul><ul id="ea4c8b68-ae4c-4c79-a275-365d1e302449" class="bulleted-list"><li style="list-style-type:disc">In the midst of devastation, anchors are always there if we only look</li></ul><ul id="db86978a-590c-4624-85e2-6c544a8f042f" class="bulleted-list"><li style="list-style-type:disc"><strong>“The only real cure for alcoholism is suffering. You just hope that your threshold for suffering is met somewhere before it destroys your life.” (Ben Affleck)</strong></li></ul><ul id="ac34cf12-73cf-489f-936d-768dd359947f" class="bulleted-list"><li style="list-style-type:disc">The sooner we take the first step, the sooner we move away from suffering.</li></ul><ul id="024523a6-71c4-4dd3-bc60-6bb4305eb807" class="bulleted-list"><li style="list-style-type:disc"><strong>“If things go wrong, don’t go with them.” (Roger Babson)</strong></li></ul><ul id="d87bbad0-4fba-4614-b7ff-5260321b4505" class="bulleted-list"><li style="list-style-type:disc">The good news is that we have a choice not to go with the things that go wrong.</li></ul><ul id="7f84ada2-13bd-4da4-8a7c-20ff19132dd1" class="bulleted-list"><li style="list-style-type:disc"><strong>“What is an addiction, really? It is a sign, a signal, a symptom of distress. It is a language that tells us about a plight that must be understood.” – Alice Miller</strong></li></ul><ul id="6639d32b-714f-4ddb-b167-f45adac51627" class="bulleted-list"><li style="list-style-type:disc"></li></ul><ul id="7cd47729-9c26-4a84-8f24-4f06d696b060" class="bulleted-list"><li style="list-style-type:disc">If we must have a new addiction, let it be about seeking a better life.</li></ul><ul id="b3bbd660-67dd-414f-95fa-9d4d7afb50c0" class="bulleted-list"><li style="list-style-type:disc"><strong>“The human spirit is more powerful than any drug – and that is what needs to be nourished: with work, play, friendship, family. These are the things that matter.” (Robin Williams)</strong></li></ul><ul id="0a396236-41be-4870-898a-fb9bda1dc929" class="bulleted-list"><li style="list-style-type:disc">At the end of the day, we all want to be whole people.</li></ul><ul id="3b1b141a-2883-4377-a883-ed657b1c0ad4" class="bulleted-list"><li style="list-style-type:disc"><strong>“Every time you are tempted to react in the same old way, ask if you want to be a prisoner of the past or a pioneer of the future.” (Deepak Chopra)</strong></li></ul><ul id="a56523b3-2f9d-4856-99d8-80f9a02774f6" class="bulleted-list"><li style="list-style-type:disc">Remember our past mistakes and do not shut the door on them. In that way, we make better future choices.</li></ul><ul id="79cf49dc-9d3c-45f4-af49-831c6a8ab07f" class="bulleted-list"><li style="list-style-type:disc"><strong>“Addiction recovery is more than stopping drinking or using. It’s an ongoing process of growing and healing – mentally, emotionally, physically and spiritually.” (LVR)</strong></li></ul><ul id="d1632fa3-dd7b-4e0f-86e5-17fd0c3d3c4f" class="bulleted-list"><li style="list-style-type:disc">The substance abuse disorder we have is an expression of something that needs to heal.</li></ul><ul id="01aaa7ec-2c3e-4829-a466-94b21e9166da" class="bulleted-list"><li style="list-style-type:disc"><strong>“Battling any addiction is a lifelong and difficult struggle. Because of that, one is never really in or out of treatment. It is a full-time commitment.” (Ben Affleck)</strong></li></ul><ul id="90caf79e-d538-413a-b2fe-7595c9e6ebfd" class="bulleted-list"><li style="list-style-type:disc">Freedom is hard work. It is worth it.</li></ul><ul id="5b813a52-10d4-4f40-b1fe-2162ffc910bc" class="bulleted-list"><li style="list-style-type:disc"><strong>“Your decision to kill your addiction will become a reality only if you believe and reinforce the fact that you have the capacity to do it. (Oche Otorkpa)</strong></li></ul><ul id="df8c6bc1-6814-4ab7-8274-089a2ea41305" class="bulleted-list"><li style="list-style-type:disc">You are the only person who has this capacity.</li></ul><ul id="9a8cf65f-7bcb-4a13-854f-08ad8f7f7f5e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Alcoholism is a disease that creates temporary madness and insanity. Drug addiction is a disease that destroys health and humanity.” (Dr. T.P.Chia)</strong></li></ul><ul id="285e160d-ed09-4888-8786-3e64db5adeed" class="bulleted-list"><li style="list-style-type:disc">Explore any treatment options that help manage this condition.</li></ul><ul id="8e60ec42-4d4d-46a2-98b6-ba2577ad0fbb" class="bulleted-list"><li style="list-style-type:disc"><strong>“Never underestimate a recovering addict. We fight for our lives every day in ways most people will never understand. “(Anonymous)</strong></li></ul><ul id="01a86fa2-b940-4a64-becb-61a17a1073f9" class="bulleted-list"><li style="list-style-type:disc">The strength it takes to move away from drug abuse should never be taken for granted.</li></ul><ul id="73d9d9fc-beef-4937-9913-b0724883df99" class="bulleted-list"><li style="list-style-type:disc"><strong>“We may not be responsible for the world that created our minds, but we can take responsibility for the mind with which we create our world.” (Gabor Maté)</strong></li></ul><ul id="5d3f05d1-be1d-4f20-ae66-0f27c8f85604" class="bulleted-list"><li style="list-style-type:disc">Amongst the most important steps that we can take is taking responsibility for our approach to life.</li></ul><ul id="45674f63-c1ca-476b-b934-f1bef7a35ecf" class="bulleted-list"><li style="list-style-type:disc"><strong>“The strength to sustain recovery can only come from the addict understanding and defining his circle of influence, from recognising that there are factors over which he can exert authority and control, and from taking responsibility for the outcome of his actions.” (Morteza Khaleghi)</strong></li></ul><ul id="12bd8186-5dad-49eb-a39d-e335d134c5fa" class="bulleted-list"><li style="list-style-type:disc">Those friends who do not accept our sobriety need to become something of our past. We cannot carry the friendships forward.</li></ul><ul id="b02349a0-8eb8-421a-a563-df8f1007f3a7" class="bulleted-list"><li style="list-style-type:disc"><strong>“It is only through one’s own efforts to turn toward life on its own terms and to develop a wiser relationship to what’s there through mindfulness and compassion that make freedom from addictive patterns possible.” (Noah Levine)</strong></li></ul><ul id="4b5e7531-2ea0-48e1-9a01-561119871dcd" class="bulleted-list"><li style="list-style-type:disc">One of the ways to sustain sobriety is to reach out to those still suffering from addiction and help them.</li></ul><ul id="8842f5aa-d9f4-4ac3-b982-6922546c57d9" class="bulleted-list"><li style="list-style-type:disc"><strong>“Strength does not come from physical capacity. It comes from an indomitable will.” (Mahatma Gandhi)</strong></li></ul><ul id="fe81f47b-c405-4008-b6ef-4c77ab4fa8c5" class="bulleted-list"><li style="list-style-type:disc">Life is an ultra-distance marathon and the will to continue gets us to the finish line.</li></ul><ul id="a0cad085-fef0-4bd6-b2c0-9b7ea8c2e87b" class="bulleted-list"><li style="list-style-type:disc"><strong>“We have to be diligent in seeking after God, emotionally attached and consciously aware of Him at all times. The desire for God’s presence must become greater than our strongest craving.” (Etta Hornsteiner)</strong></li></ul><ul id="1705cddd-1894-4226-b982-855586aecc27" class="bulleted-list"><li style="list-style-type:disc">The greatest glory we can give to God is to be constantly God-conscious.</li></ul><ul id="88962eec-153b-43f9-a1d0-33aca370dd33" class="bulleted-list"><li style="list-style-type:disc"><strong>“You can get the monkey off your back, but the circus never leaves town.” (Anne Lamott)</strong></li></ul><ul id="744a6672-7f8d-4883-8e0a-547b7a0bcc48" class="bulleted-list"><li style="list-style-type:disc">Or as a friend says, “Life is still a circus, but now the clown is in charge.”</li></ul><ul id="e98fe840-63a1-4b0f-8938-ee01267ed33f" class="bulleted-list"><li style="list-style-type:disc"><strong>“I’m going to be gone one day, and I have to accept that tomorrow isn’t promised. Am I OK with how I’m living today? It’s the only thing I can help. If I didn’t have another one, what have I done with all my todays? Am I doing a good job?” (Hayley Williams)</strong></li></ul><ul id="e8bab1b3-9d4f-4d66-a313-a7d5930ed0ae" class="bulleted-list"><li style="list-style-type:disc">It is not whether we won or lost, but how we ran the race that matters.</li></ul><ul id="5fb4782d-1a9a-4229-afac-550ca0927632" class="bulleted-list"><li style="list-style-type:disc"><strong>“No matter what people tell you, words and ideas can change the world.” (Robin Williams as John Keating in </strong><em><strong>Dead Poets Society)</strong></em></li></ul><ul id="bea6aeb4-91ab-49c7-8cbc-a43fd3f4bf16" class="bulleted-list"><li style="list-style-type:disc">The first words that change our world are, “We admitted we were powerless over our addiction.”</li></ul><ul id="77ed5d39-4b1d-4d8e-8578-74cacaeda840" class="bulleted-list"><li style="list-style-type:disc"><strong>“Not having the best situation, but seeing the best in your situation is the key to happiness.” (Marie Forleo)</strong></li></ul><ul id="07d296de-8297-4c27-b128-98f25ad36f46" class="bulleted-list"><li style="list-style-type:disc">Gratitude is a solid foundation for joy.</li></ul><ul id="4de4b223-d7fe-45aa-981c-1dfa383ca9da" class="bulleted-list"><li style="list-style-type:disc"><strong>“We are not our best intentions. We are what we do.” (Amy Dickinson)</strong></li></ul><ul id="04917106-fdc4-4073-a8f4-dd4ece4e8bec" class="bulleted-list"><li style="list-style-type:disc">The best things are not spoken. They are done.</li></ul><ul id="68ec7aa4-b4b7-45da-8ee0-46c3a2b64c8e" class="bulleted-list"><li style="list-style-type:disc"><strong>“In order for the light to shine so brightly, the darkness must be present.” (Sir Francis Bacon)</strong></li></ul><ul id="20cc9532-aa79-4a5f-9e91-fcd249ad13b4" class="bulleted-list"><li style="list-style-type:disc">For us to stay sober, we must be aware that we can fail.</li></ul><ul id="17249c6a-9931-4443-83bf-03093a2631cb" class="bulleted-list"><li style="list-style-type:disc"><strong>“This above all: to thine own self be true. (William Shakespeare)</strong></li></ul><ul id="7508d538-b4e5-4fe8-a87b-ebfa399f1d27" class="bulleted-list"><li style="list-style-type:disc">You are the best version of yourself if you allow it.</li></ul><ul id="084c45d1-c10f-4e54-99dd-92723dbf88c9" class="bulleted-list"><li style="list-style-type:disc"><strong>“Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain…” (Kevyn Aucoin)</strong></li></ul><ul id="cf201479-3d97-4393-8264-ecf7dec809aa" class="bulleted-list"><li style="list-style-type:disc">Choose life for the rest of your life.</li></ul><ul id="879f29f1-ade9-411f-a543-782f50231c76" class="bulleted-list"><li style="list-style-type:disc"><strong>“From a small seed a mighty trunk may grow.” (Aeschylus)</strong></li></ul><ul id="bb180ebe-df2c-4fed-8ffa-aa4693d39885" class="bulleted-list"><li style="list-style-type:disc">The first step is that small seed and from it grows sobriety which is mighty indeed.</li></ul><ul id="415885b2-f7f0-4b9f-9116-261ab414a200" class="bulleted-list"><li style="list-style-type:disc"><strong>“There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.” (Bruce Lee)</strong></li></ul><ul id="a38d8745-8637-4afb-8717-310edb4beee4" class="bulleted-list"><li style="list-style-type:disc">Every single day we should seek to rise higher.</li></ul><ul id="08180a0f-0382-4e2b-ae6b-c7a01194b59f" class="bulleted-list"><li style="list-style-type:disc"><strong>“There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.” (Bruce Lee)</strong></li></ul><ul id="02d81589-0d81-4519-a874-ea2463ec4734" class="bulleted-list"><li style="list-style-type:disc">When we share a problem then perspectives on a problem can change.</li></ul><ul id="12a046fa-ccf5-4059-8db5-3b9010a35e3c" class="bulleted-list"><li style="list-style-type:disc"><strong>“The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.” (Martin Luther King, Jr.)</strong></li></ul><ul id="5bf3bdd4-75b3-4d37-bbc7-a539b0c87c55" class="bulleted-list"><li style="list-style-type:disc">No one grows except through challenges. We do not swim across a river by treading water.</li></ul><ul id="75ac6422-3420-4b14-8b09-15e8bcd3ce56" class="bulleted-list"><li style="list-style-type:disc"><strong>“It is not in the stars to hold our destiny but in ourselves.” (William Shakespeare)</strong></li></ul><ul id="aef2ad45-4872-4963-a1c5-8bd2024afbfa" class="bulleted-list"><li style="list-style-type:disc">We should be the good thing that happens to us.</li></ul><ul id="24b555d0-8879-43e8-901d-3acf87d24458" class="bulleted-list"><li style="list-style-type:disc"><strong>“All the suffering, stress and addiction comes from not realizing you already are what you are looking for.” (Jon Kabat-Zinn)</strong></li></ul><ul id="80f027e4-51cd-41b7-a30a-4e20b9e3bcdd" class="bulleted-list"><li style="list-style-type:disc">When we did the 12 steps we looked deeply at ourselves and found we were sufficient for ourselves.</li></ul><ul id="6e12df34-09c4-43a3-87b0-ea8af4264e5a" class="bulleted-list"><li style="list-style-type:disc"><strong>“We honor ourselves when we speak out for recovery. We show the world that recovery matters because it brings hope and peace into the lives of individuals and their loved ones.” (Beth Wilson)</strong></li></ul><ul id="6af3623c-feea-41a5-97bc-fed44a6cec74" class="bulleted-list"><li style="list-style-type:disc">As we recover we become a beacon of hope for those still battling the effects of drinking, both the alcoholic and those close to them.</li></ul><ul id="fa44a98f-16b7-4445-99f5-2289110ad064" class="bulleted-list"><li style="list-style-type:disc"><strong>“Getting sober never felt like I had pulled myself up by my own spiritual bootstraps. It felt instead like I was on one path toward destruction and God pulled me off of it by the scruff of my collar, me hopelessly kicking and flailing and saying, ‘Screw you. I’ll take the destruction please.’ God looked at tiny, little red-faced me and said, ‘that’s adorable,’ and then plunked me down on an entirely different path.” (Nadia Bolz-Weber)</strong></li></ul><ul id="cd158bc0-2c4e-41c1-9230-2f9d4ef63714" class="bulleted-list"><li style="list-style-type:disc">It is through the grace of our higher power that we become sober and become a more complete person</li></ul><ul id="2c5e77d8-a3c5-486b-ad27-1aacf16b6f12" class="bulleted-list"><li style="list-style-type:disc"><strong>“Nobody stays recovered unless the life they have created is more rewarding and satisfying than the one they left behind.” (Anne Fletcher)</strong></li></ul><ul id="138e5d0e-04ad-417d-923b-2514709f512c" class="bulleted-list"><li style="list-style-type:disc">That is why the ninth step promises exist. We <em>will</em> come to know a new freedom and a new happiness.</li></ul><ul id="c1c9dad2-a224-47bf-a5a6-a387387acf55" class="bulleted-list"><li style="list-style-type:disc"><strong>“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.” (Albert Einstein)</strong></li></ul><ul id="c5ba0b2d-c448-416b-be1c-e7b716805552" class="bulleted-list"><li style="list-style-type:disc">Once we have achieved sobriety every 24 hours is a miracle.</li></ul><ul id="6cda65f0-cdfb-4950-a0a1-607ac0a122f1" class="bulleted-list"><li style="list-style-type:disc"><strong>“We all make mistakes, have struggles, and even regret things in our past. But you are not your mistakes, you are not your struggles, and you are here now with the power to shape your day and your future.” (Steve Maraboli)</strong></li></ul><ul id="d86a0b2e-dc89-4a77-a8c2-a33ffe6a21b5" class="bulleted-list"><li style="list-style-type:disc">There is a condition here. We must be prepared to accept and use that power.</li></ul><ul id="0b76fdaf-f87f-4ccb-8d6b-8f68ffd45b38" class="bulleted-list"><li style="list-style-type:disc"><strong>“But we’ve lost the plot if we use religion as the place where we escape from difficult realities instead of as the place where those difficult realities are given meaning.” (Nadia Bolz-Weber)</strong></li></ul><ul id="bf358570-443f-4563-9835-0fc5ee01975d" class="bulleted-list"><li style="list-style-type:disc">If we follow the path of recovery and carry the message to the still suffering alcoholic then we give our battle with alcohol meaning.</li></ul><ul id="dfa8634f-592e-42d6-85bf-80e6d482cac2" class="bulleted-list"><li style="list-style-type:disc"><strong>“I don’t know where I’m going from here, but I promise it won’t be boring.” (David Bowie)</strong></li></ul><ul id="aba73fe5-22cf-4dd3-b78d-84504456d06a" class="bulleted-list"><li style="list-style-type:disc">Life in sobriety is an adventure. A better one and not one plagued by blackouts.</li></ul><ul id="1353d602-d43f-45c0-92d1-8d203742bc01" class="bulleted-list"><li style="list-style-type:disc"><strong>“You can’t go back and make a new start, but you can start right now and make a brand new ending.” (James R. Sherman)</strong></li></ul><ul id="888bf7e0-8eb4-4821-9636-7bbcdc212f58" class="bulleted-list"><li style="list-style-type:disc">This is what giving up substance abuse is all about creating a different and better life story than the one that would have been if we had not become sober.</li></ul><ul id="dfde8a84-24fe-4742-9ea5-36aa3391b326" class="bulleted-list"><li style="list-style-type:disc"><strong>“You do not need to know precisely what is happening, or exactly where it is all going. What you need is to recognize the possibilities and challenges offered by the present moment, and to embrace them with courage, faith and hope.” (Thomas Merton)</strong></li></ul><ul id="a6124021-48ce-4062-a678-e1ec30a9aaeb" class="bulleted-list"><li style="list-style-type:disc"><strong>“Addiction, at its worst, is akin to having Stockholm Syndrome. You’re like a hostage who has developed an irrational affection for your captor. They can abuse you, torture you, even threaten to kill you, and you’ll remain inexplicably and disturbingly loyal.” - </strong><em><strong>Anne Clendening, writer and yoga instructor</strong></em></li></ul><ul id="3abd1a2f-5267-422c-bdb6-ce239a912f10" class="bulleted-list"><li style="list-style-type:disc">“An addict is someone who uses their body to tell society that something is wrong.” - <em>Stella Adler, actress</em></li></ul><ul id="62e72530-1136-40f2-8576-9a64470c27f2" class="bulleted-list"><li style="list-style-type:disc"><strong>“Asking for help is really the beginning of any sort of recovery process.” - </strong><em><strong>Marc Maron, comedian</strong></em></li></ul><ul id="47e0b6e3-0fe4-484d-b10f-0bd444772fcb" class="bulleted-list"><li style="list-style-type:disc">“I live in negotiation with a shadow side that has to be respected. There is a wound. I believe that this is more than a characteristic of addiction. I think it is a part of being human, to carry a wound, a flaw and again, paradoxically, it is only by accepting it that we can progress.” - <em>Russell Brand, comedian and actor</em></li></ul><ul id="6a3c4bf7-2538-474b-8285-decdee6cde2f" class="bulleted-list"><li style="list-style-type:disc"><strong>“Remember just because you hit bottom doesn’t mean you have to stay there.” – </strong><em><strong>Robert Downey Jr.</strong></em></li></ul><ul id="64356fe9-4687-4b9d-a578-00dadd74f27b" class="bulleted-list"><li style="list-style-type:disc">“Recovery is something that you have to work on every single day and it’s something that doesn’t get a day off.” - <em>Demi Lovato, singer and actress</em></li></ul><ul id="3946d803-a1aa-4651-ac60-e184a91a637a" class="bulleted-list"><li style="list-style-type:disc"><strong>“Nobody stays recovered unless the life they have created is more rewarding and satisfying than the one they left behind.” - </strong><em><strong>Anne Fletcher, addiction specialist</strong></em></li></ul><ul id="6d7e0709-48b1-47d7-a7f9-cad8efc98428" class="bulleted-list"><li style="list-style-type:disc">“The goal isn’t to be sober. The goal is to love yourself so much that you don’t need to drink.” – <em>Unknown</em></li></ul><ul id="ad30c571-549a-4a95-860b-5dbbd69bf9ae" class="bulleted-list"><li style="list-style-type:disc"><strong>“Rock bottom became the solid foundation on which I rebuilt my life.” - </strong><em><strong>J.K. Rowling, author</strong></em></li></ul><ul id="71afdc20-df38-4f0c-b6d7-6aaf92912950" class="bulleted-list"><li style="list-style-type:disc">“I really mean when I say my biggest fear in early recovery was that I would never have fun again. The beautiful truth is that recovery has given me freedom and the confidence to go out in the world and leave my own mark.” – <em>Tom Stoddart, photojournalist</em></li></ul><ul id="ebd5f3ea-4722-4243-a172-4a6ae3bf332f" class="bulleted-list"><li style="list-style-type:disc"><strong>“Recovery is not simple abstinence. It’s about healing the brain, remembering how to feel, learning how to make good decisions, becoming the kind of person who can engage in healthy relationships, cultivating the willingness to accept help from others, daring to be honest, and opening up to doing.” - </strong><em><strong>Debra Jay, addiction specialists</strong></em></li></ul><ul id="e5e8ec7f-0b69-449b-96a9-16ee70f49e9a" class="bulleted-list"><li style="list-style-type:disc">“Being a drug addict in recovery is actually a great place to be because you’re forced to be looking at the rancid layers of the onion that you’ve been carrying around for a lifetime. Whatever degree of struggle it offers me, I’m actually grateful for. It keeps me working towards change, it gives me the desire for change” - <em>Anthony Kiedis, rockstar</em></li></ul><ul id="457cce25-4e05-4142-8f86-1a4ed483b39a" class="bulleted-list"><li style="list-style-type:disc"><strong>“If you can quit for a day, you can quit for a lifetime.” - </strong><em><strong>Benjamin Alire Saenz, writer</strong></em></li></ul><ul id="2e7f1fea-7c91-4fe4-8c88-ff4b36ace481" class="bulleted-list"><li style="list-style-type:disc">“The initial journey towards sobriety is a delicate balance between insight into one&#x27;s desire for escape and abstinence from one&#x27;s addiction,” <em>Debra L. Kaplan, therapist</em></li></ul><ul id="9056e28a-6b48-4bdb-86fd-1268e9cbda45" class="bulleted-list"><li style="list-style-type:disc"><strong>“All the suffering, stress, and addiction comes from not realizing you already are what you are looking for.” – </strong><em><strong>Jon Kabat-Zinn, doctor and author</strong></em></li></ul><ul id="a9280643-01d5-4867-97bc-294d08c2e800" class="bulleted-list"><li style="list-style-type:disc">“Thinking about not drinking forever was very scary, but once I did it wasn’t hard anymore because I had all of these miracles happen that let me know I was on exactly the right path.” - <em>Lana Del Rey, singer-songwriter</em></li></ul><ul id="e46e23e6-2253-400b-8aca-d3050a5d74a6" class="bulleted-list"><li style="list-style-type:disc"><strong>“Addiction is an adaptation. It’s not you–it’s the cage you live in.” - </strong><em><strong>Johann Hari, writer</strong></em></li></ul><ul id="a0bddd33-4fd9-427d-8221-e0667f85fa73" class="bulleted-list"><li style="list-style-type:disc">“Job one is get out of that cave. A lot of people do get out but don&#x27;t change. So the thing is to get out and recognize the significance of that aggressive denial of your fate, come through the crucible forged into a stronger metal.” - <em>Robert Downey Jr, actor</em></li></ul><ul id="c05a3b38-8401-4029-a528-bf21920f4ad9" class="bulleted-list"><li style="list-style-type:disc"><strong>“Don&#x27;t pick up a drink or drug, one day at a time. It actually is simple, but it isn&#x27;t easy: it requires incredible support and fastidious structuring.” - </strong><em><strong>Russell Brand</strong></em></li></ul><ul id="831c5b6a-c1f3-450c-af58-e9219f5008aa" class="bulleted-list"><li style="list-style-type:disc">“That inner dialogue proves to us, &#x27;You&#x27;re not capable of change. You are weak. You&#x27;re staying stuck.&#x27; And when you break that cycle, the empowerment that comes out of it, that says, &#x27;I&#x27;m not weak, I&#x27;m actually strong, I&#x27;ve proven to myself that I am capable of change,&#x27; and I believe people are capable of big changes.&quot; - <em>Drew Barrymore, actress</em></li></ul><ul id="5719f238-0ac0-4ef9-af22-03f5f112a949" class="bulleted-list"><li style="list-style-type:disc"><strong>“People who go through rehab or a halfway house walk a tough road together and not all of them make it. We knew we faced a powerful adversary that demanded respect. Unlike combat, the adversary was inside us.” - </strong><em><strong>Rob Delaney, comedian and actor</strong></em></li></ul><ul id="534f0bb2-f665-4833-aeba-1c8925e0e407" class="bulleted-list"><li style="list-style-type:disc">“As I’ve had to remind myself, if you have a problem, getting help is a sign of courage, not weakness or failure. With acceptance and humility, I continue to avail myself with the help of so many people and I am grateful to all those who are there for me. I hope down the road I can offer an example to others who are struggling.” - <em>Ben Affleck, actor</em></li></ul><ul id="6dde8028-a4c6-4125-9041-19b95df7965b" class="bulleted-list"><li style="list-style-type:disc"><strong>“I change when I’m drunk. I’m one of those people who changes…There is something in any person who drinks in a way that’s clearly not good for them, something that is attracted to that chaos.” - </strong><em><strong>Daniel Radcliffe, actor</strong></em></li></ul><ul id="c5ad9b90-53fd-4c97-95bd-a3c821bb347b" class="bulleted-list"><li style="list-style-type:disc">“Getting sober was the single bravest thing I’ve ever done, and will ever do, in my life. Being courageous enough to acknowledge it privately with my family and friends. Working really hard at solidifying it, getting support around it, and being healthy. And then talking about it publicly. That is the single greatest accomplishment of my life.” -<em>Jamie Lee Curtis, actress</em></li></ul><ul id="51ad20ee-c631-4bcf-9af3-21f032231dc4" class="bulleted-list"><li style="list-style-type:disc"><strong>“The idea that the creative endeavor and mind-altering substances are entwined is one of the great pop-intellectual myths of our time… Substance abusing writers are just substance abusers —common garden variety drunks and druggies, in other words.” - </strong><em><strong>Stephen King, writer</strong></em></li></ul><ul id="a298e1ad-ba52-40a7-ac31-2d3353e7fc1f" class="bulleted-list"><li style="list-style-type:disc">“I realized that I only had two choices: I was either going to die, or I was going to live, and which one did I want to do? And then I said those words, ‘I’ll get help,’ or, ‘I need help. I’ll get help.’ And my life turned around. Ridiculous for a human being to take 16 years to say, ‘I need help.’” - <em>Elton John, singer and composer</em></li></ul><ul id="18afc5af-af92-4b0e-9112-b38857a73362" class="bulleted-list"><li style="list-style-type:disc"><strong>“I couldn’t believe that anybody could be naturally happy without being on something. So I would say to anybody, ‘It does get better.’” - </strong><em><strong>Eminem, rapper</strong></em></li></ul><ul id="8d0150b1-c73d-4981-b420-3115bf3f36a5" class="bulleted-list"><li style="list-style-type:disc">“Sometimes you can only find Heaven by slowly backing away from Hell.” - <em>Carrie Fisher, actress</em></li></ul><ul id="b27bcbb3-b0cf-4849-aa56-09799cc7ddaf" class="bulleted-list"><li style="list-style-type:disc"><strong>“Like, at first it’s fine and you think you have a dark side – it’s exciting – and then you realize the dark side wins every time if you decide to indulge in it. - </strong><em><strong>Lana Del Rey, singer-songwriter</strong></em></li></ul><ul id="76de45b9-e5a7-49de-aee0-c366711c7982" class="bulleted-list"><li style="list-style-type:disc">“I don&#x27;t drink or do drugs anymore. I realized I wasn&#x27;t going to live up to my potential, and that scared the hell out of me. I thought, &#x27;Wow, I&#x27;m actually gonna ruin my life. I&#x27;m really gonna ruin it.’” - <em>Bradley Cooper, actor and filmmaker</em></li></ul><ul id="2d1dd33a-ba09-4bc6-8cb8-396b139d6bd5" class="bulleted-list"><li style="list-style-type:disc"><strong>“I got sober. I stopped killing myself with alcohol. I began to think: ‘Wait a minute – if I can stop doing this, what are the possibilities?’ And slowly it dawned on me that it was maybe worth the risk.” ―</strong><em><strong> Craig Ferguson, television host</strong></em></li></ul><ul id="e5c3f417-3c57-4732-b297-0ab951589274" class="bulleted-list"><li style="list-style-type:disc">“Your best days are ahead of you. The movie starts when the guy gets sober and puts his life back together; it doesn’t end there.” - <em>Bucky Sinister, author</em></li></ul><ul id="8c3d2d27-9494-44ce-a77e-c1ad9c66b6df" class="bulleted-list"><li style="list-style-type:disc"><strong>“Somebody once asked me how I define sobriety, and my response was ‘liberation from dependence’.” - </strong><em><strong>Leslie Jamison, author</strong></em></li></ul><ul id="eeb0b89b-6911-4554-a174-c729d1bcac36" class="bulleted-list"><li style="list-style-type:disc">“Being in recovery has given me everything of value that I have in my life. Integrity, honesty, fearlessness, faith, a relationship with God, and most of all gratitude. It&#x27;s given me a beautiful family and an amazing career. I&#x27;m under no illusions where I would be without the gift of alcoholism and the chance to recover from it.” - <em>Rob Lowe, actor</em></li></ul><ul id="86d5db44-58e9-48a1-a741-cf94c7b764b6" class="bulleted-list"><li style="list-style-type:disc"><strong>“When I got sober, I thought giving up was saying goodbye to all the fun and all the sparkle, and it turned out to be just the opposite. That’s when the sparkle started for me.” - </strong><em><strong>Mary Karr, poet</strong></em></li></ul><ul id="b1d509f1-f2b4-4b15-bcf3-1f8f07c31eb5" class="bulleted-list"><li style="list-style-type:disc">“I chose sober because I wanted a better life. I stay sober because I got one’ – <em>Unknown</em></li></ul><ul id="7e348a82-df0a-45c6-b4aa-3b6618e80f74" class="bulleted-list"><li style="list-style-type:disc"><strong>“[Without sobriety] I would never be sitting here with you, no way, no chance. I never would have been able to have the relationships that I do. I never would have been able to take care of my father the way I did when he was sick. So many things.&quot; - </strong><em><strong>Bradley Cooper, actor and filmmaker</strong></em></li></ul><ul id="6f58ec9d-1e12-4d8b-8df4-53ad9751e779" class="bulleted-list"><li style="list-style-type:disc">“Getting sober is a radically creative act.”― <em>Meredith Bell, author</em></li></ul><ul id="b697ea44-3884-4bd9-b5ce-95750cba9972" class="bulleted-list"><li style="list-style-type:disc"><strong>“I think it’s important for me to show the world that sobriety hasn’t made me soft. I’m on a mission to prove I’m still a nutcase.”― </strong><em><strong>Steve-O, television personality</strong></em></li></ul><ul id="f49821f9-abad-4648-bb6c-254d7512ddc3" class="bulleted-list"><li style="list-style-type:disc">“I once heard a sober alcoholic say that drinking never made him happy, but it made him feel like he was going to be happy in about fifteen minutes. That was exactly it, and I couldn’t understand why the happiness never came, couldn’t see that alcohol kept me trapped in a world of illusion, procrastination, paralysis. I lived always in the future, never in the present. Next time, next time! Next time I drank it would be different, next time it would make me feel good again. And all my efforts were doomed because already drinking hadn’t made me feel good in years.” - <em>Heather King, author</em></li></ul><ul id="1bb5ecfd-986c-46bf-9008-bc1bfc2a5b49" class="bulleted-list"><li style="list-style-type:disc"><strong>“I wanted a drink [because] I didn’t want to feel what I was feeling, and a voice within was telling me that I needed a drink, that I couldn’t bear it without it. But that voice is a liar. You can always bear the pain. It’ll hurt, it’ll burn like acid in an open wound, but you can stand it. And, as long as you can make yourself go on choosing the pain over the relief, you can keep going.” - </strong><em><strong>Lawrence Block, author</strong></em></li></ul><ul id="697d28cb-d26a-4d84-8693-e512626c9e55" class="bulleted-list"><li style="list-style-type:disc">“The problem of alcohol is, it’s just too easy. It’s everywhere. At least hard drugs, you have to have a dealer. All I know is, I could feel its presence in an ominous, daunting way that was preventing me from being my higher self.” – <em>Ben Harper, singer-songwriter</em></li></ul><ul id="432461ba-7b2a-4e4e-85f2-3849e950d976" class="bulleted-list"><li style="list-style-type:disc"><strong>“When was the last time you woke up and wished you’d had just one more drink the night before? I have never regretted not drinking. Say this to yourself, and you’ll get through anything.” - </strong><em><strong>Meredith Bell, author</strong></em></li></ul><ul id="de608a72-e817-4beb-b1af-6e4e000ecc08" class="bulleted-list"><li style="list-style-type:disc">“When I was growing up, when I thought of an alcoholic, I thought of some toothless old guy in a trench coat in a basement somewhere. I just never thought that would apply to me. That type of stigma kept me from getting the help that I needed when I knew I needed it.” - <em>Joe Manganiello, actor</em></li></ul><ul id="10634d22-ae12-4603-a53b-dac234c02f62" class="bulleted-list"><li style="list-style-type:disc"><strong>“I was mad at that bottle. At how it allowed me to stay complacent and numb.” - </strong><em><strong>Jessica Simpson, singer</strong></em></li></ul><ul id="40bf06aa-d495-4736-a896-f10d8ed945a3" class="bulleted-list"><li style="list-style-type:disc">“For people who drink too much, the problem isn&#x27;t really about booze. It&#x27;s about an inability to deal with life ... What giving up booze does is allow you to look at yourself through an untainted mirror for the first time.” - <em>Collin Farrel, actor</em></li></ul><ul id="e2330247-8f64-41d5-a245-6cfd506de693" class="bulleted-list"><li style="list-style-type:disc"><strong>“Rehab isn’t what finally got me sober. It was nearly losing everything and finally seeing that whatever benefit I thought alcohol gave me was outweighed by what it would cost me… ‘You’re removing the capacity to be present, not just in the bad moments.’ You’re numbing the good feelings. You’re numbing everything. It’s profoundly selfish.” – </strong><em><strong>Elizabeth Vargas, television journalist</strong></em></li></ul><ul id="ab0a17ea-55ae-40c4-9f65-fefbc0f68a42" class="bulleted-list"><li style="list-style-type:disc">“Alcoholism is a devastating, potentially fatal disease. The primary symptom of having it is telling everyone--including yourself—that you are not an alcoholic.” - <em>Herbert L. Gravitz &amp; Julie D. Bowden, authors</em></li></ul><ul id="0a5d712e-ef17-4159-adde-a5a01e9027f7" class="bulleted-list"><li style="list-style-type:disc"><strong>“It’s been said that alcoholics are egomaniacs with low self-esteem. It’s the perfect description. Being larger than life and yet your pride is crushed with self-loathing.” - </strong><em><strong>Gary Oldman, actor</strong></em></li></ul><ul id="f2fef0fd-3422-434f-96f1-861458a6ca00" class="bulleted-list"><li style="list-style-type:disc">“I think once I made up my mind that I was allergic to alcohol, and that’s what I learned, it made sense to me. And I think it was kind of pointed out that you know if you were allergic to strawberries, you wouldn’t eat strawberries. And that made sense to me.”- <em>Betty Ford</em></li></ul><ul id="6a34c714-8d8b-4574-934a-9d162ae008b4" class="bulleted-list"><li style="list-style-type:disc"><strong>“At first, addiction is maintained by pleasure, but the intensity of the pleasure gradually diminishes and addiction is then maintained by the avoidance of pain.” -</strong><em><strong> Frank Tallis, psychologist</strong></em></li></ul><ul id="553508d4-baad-4345-961d-e069706ea490" class="bulleted-list"><li style="list-style-type:disc">“I used to think a drug addict was someone who lived on the far edges of society. Wild-eyed, shaven-headed and living in a filthy squat. That was until I became one.” - <em>Cathryn Kemp, writer</em></li></ul><ul id="fb8bf4bc-2b8d-489f-a149-743e2123f065" class="bulleted-list"><li style="list-style-type:disc"><strong>“Most addicts I have talked to report a similar experience. They did not start using drugs for any reason they can remember. They just drifted along until they got hooked. If you have never been addicted, you can have no clear idea what it means to need junk with the addict’s special need. You don’t decide to be an addict. One morning you wake up sick and you’re an addict.“ - </strong><em><strong>William S. Burroughs, writer</strong></em></li></ul><ul id="772646ae-df3c-4445-8dc5-63d6f3b6beff" class="bulleted-list"><li style="list-style-type:disc">“Drugs are a waste of time. They destroy your memory and your self-respect and everything that goes along with with your self esteem.” - <em>Kurt Cobain, rockstar</em></li></ul><ul id="e9d6d360-203f-4a7f-9bdc-6dd55668af72" class="bulleted-list"><li style="list-style-type:disc"><strong>“People use drugs, legal and illegal, because their lives are intolerably painful or dull. They hate their work and find no rest in their leisure. They are estranged from their families and their neighbors. It should tell us something that in healthy societies drug use is celebrative, convivial, and occasional, whereas among us it is lonely, shameful, and addictive. We need drugs, apparently, because we have lost each other.” - </strong><em><strong>Wendell Berry, writer</strong></em></li></ul><ul id="30892601-3683-46e7-a1a8-197920caa8a5" class="bulleted-list"><li style="list-style-type:disc">“Not all addictions are rooted in abuse or trauma, but I do believe they can all be traced to painful experience. A hurt is at the center of all addictive behaviors.“ – <em>Gabor Mate, doctor and addiction expert</em></li></ul><ul id="6a8808c3-d523-4aee-b63d-e1e0212071de" class="bulleted-list"><li style="list-style-type:disc"><strong>“I’ve wanted to feel pleasure to the point of insanity. They call it getting high because it&#x27;s wanting to know that higher level, that godlike level. You want to touch the heavens, you want to feel glory and euphoria, but the trick is it takes work. You can&#x27;t buy it, you can&#x27;t get it on a street corner, you can&#x27;t steal it or inject it or shove it up your ass, you have to earn it.” - </strong><em><strong>Anthony Kiedis, rockstar</strong></em></li></ul><ul id="0ce4391b-8352-47f9-8738-bc2d0a147afb" class="bulleted-list"><li style="list-style-type:disc">“There’s not a drug on Earth that can make life meaningful.” – <em>Sarah Kane, playwright</em></li></ul><ul id="bdb29b98-8a1f-4307-bc36-d8001ca27dd3" class="bulleted-list"><li style="list-style-type:disc"><strong>“People always want to ask me about my drug problem—I never had a drug problem; I had a self-esteem problem!” - </strong><em><strong>Gloria Gaynor, singer</strong></em></li></ul><ul id="e63d5df4-3c57-441b-8ce0-6d4fd5650348" class="bulleted-list"><li style="list-style-type:disc">“That’s at least in part why I ingested chemical waste—it was a kind of desire to abbreviate myself. To present the CliffNotes of the emotional me, as opposed to the twelve-column read. I used to refer to my drug use as putting the monster in the box. I wanted to be less, so I took more—simple as that.” - <em>Carrie Fisher, actress</em></li></ul><ul id="430d26c6-39bd-45f3-b85f-b0a06553f595" class="bulleted-list"><li style="list-style-type:disc"><strong>“You’re not responsible for your disease, but you are responsible for your behavior.”</strong> - Anonx</li></ul><ul id="6bf45d0c-e8ba-44ce-989e-d0f5008eb39b" class="bulleted-list"><li style="list-style-type:disc">“Sobriety is a journey, not a destination.” - Anonx</li></ul><ul id="de6d9a4e-bf4f-4246-9ba6-33461ade4169" class="bulleted-list"><li style="list-style-type:disc"><strong>“I can change my story.”</strong> - Anonx</li></ul><ul id="47b75de7-cf74-45e0-b4ec-a043dad23ecc" class="bulleted-list"><li style="list-style-type:disc">“I deserve to be sober.” - Anonx</li></ul><ul id="7f39d06a-bfad-4643-abc5-5b1b6ad4682e" class="bulleted-list"><li style="list-style-type:disc"><strong>“I refuse to give up on myself.”</strong> - Anonx</li></ul><ul id="c3958af7-85c3-4dd0-a831-1f9b6ed5227f" class="bulleted-list"><li style="list-style-type:disc">“Failure is a stepping stone.” - Anonx</li></ul><ul id="972ec27d-402e-40ea-868b-58cb50d3858b" class="bulleted-list"><li style="list-style-type:disc"><strong>“What I do today creates a better tomorrow.”</strong> - Anonx</li></ul><ul id="031dd5ef-6900-4bb0-b452-75b0a27147ec" class="bulleted-list"><li style="list-style-type:disc">“I am becoming who I want to be.” - Anonx</li></ul><ul id="697ea9b5-5cdc-4630-aec7-2e568551f1a9" class="bulleted-list"><li style="list-style-type:disc"><strong>“I am worthy of inner peace.”</strong> - Anonx</li></ul><ul id="24398956-0a5a-42fd-a880-29be899f4780" class="bulleted-list"><li style="list-style-type:disc">“I accept myself completely.” - Anonx</li></ul><ul id="d150f09c-33ee-432f-99ee-41d8542cf3bd" class="bulleted-list"><li style="list-style-type:disc"><strong>“We do not have to become heroes overnight. Just a step at a time, meeting each thing that comes up, seeing it is not as dreadful as it appeared, discovering we have the strength to stare it down.” - </strong><em><strong>Eleanor Roosevelt, first lady</strong></em></li></ul><ul id="95007a1d-db4e-41b9-86f1-223649f1f44d" class="bulleted-list"><li style="list-style-type:disc">“When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.” - <em>Henry Ford, founder of Ford Motor Company</em></li></ul><ul id="b7dedd6d-69a4-450a-8d29-ef307685ab8e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Sometimes when in a dark place you think you’ve been buried, when actually you’ve been planted.’ - </strong><em><strong>Christine Caine, author</strong></em></li></ul><ul id="5fcbfb14-13b7-4399-bbd2-095071b512ac" class="bulleted-list"><li style="list-style-type:disc">“Sometimes we motivate ourselves by thinking of what we want to become. Sometimes we motivate ourselves by thinking about who we don’t ever want to be again.” - <em>Shane Niemeyer, athlete and motivational speaker</em></li></ul><ul id="b67bf017-12e4-4dc7-a113-3840a17a0b69" class="bulleted-list"><li style="list-style-type:disc"><strong>“Out of suffering have emerged the strongest souls; the most massive characters are seared with scars.” - </strong><em><strong>Khalil Gibran, writer</strong></em></li></ul><ul id="c531109a-1585-4492-a419-22e17f353f81" class="bulleted-list"><li style="list-style-type:disc">“The way to measure your progress is backward against where you started, not against your ideal.” - <em>Dan Sullivan, entrepreneur</em></li></ul><ul id="eec243ba-ee9f-495c-afad-9d092bfbb91a" class="bulleted-list"><li style="list-style-type:disc"><strong>“When we long for life without difficulties, remind us that oaks grow strong in contrary winds and diamonds are made under pressure.” - </strong><em><strong>Peter Marshall, minister</strong></em></li></ul><ul id="e58a5a41-5b4f-4a07-8510-634df2c03679" class="bulleted-list"><li style="list-style-type:disc">“We don’t even know how strong we are until we are forced to bring that hidden strength forward.” - <em>Isabel Allende, writer</em></li></ul><ul id="36874e96-4da5-4aff-a73d-0ff8bccb476e" class="bulleted-list"><li style="list-style-type:disc"><strong>“Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.” - </strong><em><strong>Arnold Schwarzenegger, actor and politician</strong></em></li></ul><ul id="89114203-08b3-419b-aa13-9c768ebdd16e" class="bulleted-list"><li style="list-style-type:disc">“The human capacity for burden is like bamboo—far more flexible than you’d ever believe at first glance.” - <em>Jodi Picoult, writer</em></li></ul><ul id="eebcc562-6c0f-4e7a-be21-c76d10f6ede8" class="bulleted-list"><li style="list-style-type:disc"><strong>“One of the hardest things was learning that I was worth recovery.” - </strong><em><strong>Demi Lovato, actress and singer</strong></em></li></ul><ul id="3d5d74a1-cfd5-454c-b7e2-13d5ee85d3e5" class="bulleted-list"><li style="list-style-type:disc">“I have come to believe that caring for myself is not self-indulgent. Caring for myself is an act of survival.” - <em>Audre Lorde, writer and womanist</em></li></ul><ul id="55ad343a-bea6-4417-ab24-439bcea7143e" class="bulleted-list"><li style="list-style-type:disc"><strong>“The real difficulty is to overcome how you think about yourself.” - </strong><em><strong>Maya Angelou, poet and activist</strong></em></li></ul><ul id="64e3f7db-b8a8-42d7-9b72-d9255d4d67fd" class="bulleted-list"><li style="list-style-type:disc">“In order to love who you are, you cannot hate the experiences that shaped you.” - <em>Andrea Dykstra, author</em></li></ul><ul id="891f5062-651f-4d84-becf-a38a41bec46f" class="bulleted-list"><li style="list-style-type:disc"><strong>“Love is the great miracle cure. Loving ourselves works miracles in our lives.” - </strong><em><strong>Louise Hay, motivational author</strong></em></li></ul><ul id="8b87c4e4-f6dd-4414-86f2-d593e1d77e3c" class="bulleted-list"><li style="list-style-type:disc">“Self-love is an ocean, and your heart is a vessel. Make it full, and any excess will spill over into the lives of the people you hold dear. But you must come first.” - <em>Beau Taplin, author</em></li></ul><ul id="d3fc259a-c5d1-4eef-a932-248e94d336ee" class="bulleted-list"><li style="list-style-type:disc"><strong>“It took many years of vomiting up all the filth I&#x27;d been taught about myself, and half-believed, before I was able to walk on this earth as though I had a right to be here.&quot; – </strong><em><strong>James Baldwin, writer</strong></em></li></ul><ul id="e967a9d9-cc44-4cbb-a55e-5e1d2c755ef8" class="bulleted-list"><li style="list-style-type:disc">“Lighten up on yourself. No one is perfect. Gently accept your humanness.” - <em>Deborah Day, author</em></li></ul><ul id="74974db6-d7f2-402c-b96d-f877f0d6c013" class="bulleted-list"><li style="list-style-type:disc"><strong>“Forgiving yourself, believing in yourself, and choosing to love yourself are the best gifts one could receive.” - </strong><em><strong>Brittany Burgunder, author</strong></em></li></ul><ul id="95424297-3e4e-4034-8644-2ffc037abb10" class="bulleted-list"><li style="list-style-type:disc">“Self-care is never a selfish act—it is simply good stewardship of the only gift I have, the gift I was put on earth to offer to others.” - <em>Parker Palmer, writer and speaker</em></li></ul><ul id="83ce6e59-244f-4940-90d4-28bb6cf4f276" class="bulleted-list"><li style="list-style-type:disc"><strong>“I’ve been the lead in movies, on television shows and nominated for Emmy. But the best thing I can say about me is that people who can&#x27;t stop drinking come up to me and say, &#x27;Can you help me? &#x27; And I can say, &#x27;Yes. &#x27;&quot; - </strong><em><strong>Matthew Perry, actor</strong></em></li></ul><ul id="bc399b73-c7b0-46e5-af7b-e59024921e7c" class="bulleted-list"><li style="list-style-type:disc">“What was so painful about Amy [Winehouse]’s death is that I know that there is something I could have done. I could have passed on to her the solution that was freely given to me. Don’t pick up a drink or drug, one day at a time. It sounds so simple; it actually is simple but it isn’t easy; it requires incredible support and fastidious structuring.” - <em>Russell Brand, comedian</em></li></ul><ul id="42b43ada-d79f-4054-aa9d-265bfe6e9f84" class="bulleted-list"><li style="list-style-type:disc"><strong>“The healthy person finds happiness in helping others. Thus, for him, unselfishness is selfish.” - </strong><em><strong>Alcoholics Anonymous (AA) saying</strong></em></li></ul><ul id="1a478f75-e8dd-4b51-a3d0-c84652bbebde" class="bulleted-list"><li style="list-style-type:disc">“The best way to find yourself is to lose yourself in the service of others.” - <em>Mahatma Gandhi</em></li></ul><ul id="64d3c16f-d100-4a90-a01e-d9d034f5264a" class="bulleted-list"><li style="list-style-type:disc"><strong>“Set your heart on doing good. Do it over and over again, and you will be filled with joy.” – </strong><em><strong>Buddha</strong></em></li></ul><ul id="35afea5a-3723-486b-a2e2-8fc7c158167f" class="bulleted-list"><li style="list-style-type:disc">“An effort made for the happiness of others lifts us above ourselves.” - <em>Lydia M. Child, abolitionist</em></li></ul><ul id="c072fd29-d8b6-4c4c-8ae1-1d3e751487bd" class="bulleted-list"><li style="list-style-type:disc"><strong>“In helping others, we shall help ourselves, for whatever good we give out completes the circle and comes back to us.” - </strong><em><strong>Flora Edwards</strong></em></li></ul><ul id="ece09fa8-108b-4d11-b576-6f8119361e67" class="bulleted-list"><li style="list-style-type:disc">“If you get, give. If you learn, teach.”– <em>Maya Angelou, poet and activist</em></li></ul><ul id="ae8edb69-8e0b-4447-999e-8665c44f8dec" class="bulleted-list"><li style="list-style-type:disc"><strong>“If you light a lamp for somebody, it will also brighten your path.” – </strong><em><strong>Buddha</strong></em></li></ul><ul id="e240a38c-c93a-41f9-b71d-b28b339ebea0" class="bulleted-list"><li style="list-style-type:disc">“Dare to reach out your hand into the darkness, to pull another hand into the light.” – <em>Norman B. Rice, politician</em></li></ul><p id="e543c6f7-09c0-47b2-a056-be6928890bbf" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
