@@ -1,4 +1,4 @@
-import csv
+import csv, re
 from bs4 import BeautifulSoup
 
 html_file_path = "Draft 2 - Quote organisation 65e3f45f4c3d432bbc2c633b96098b9b.html"
@@ -20,23 +20,32 @@ rows = []
 # Extract quotes and authors
 for quote_element in quote_elements:
     quote_element_text = quote_element.li.get_text(strip=True)
+    quote_element_text = quote_element_text.replace('―','-')
     quote_element_text = quote_element_text.replace('~','-')
     quote_element_text = quote_element_text.replace('–','-')
     quote_element_text = quote_element_text.replace('(','-')
-    quote_element_text = quote_element_text.replace('”','\"')
+    quote_element_text = quote_element_text.replace('“','"')
+    quote_element_text = quote_element_text.replace('”','"')
+    # quote_element_text = quote_element_text.replace('\"','') # Remove all quotes
     quote_element_text = quote_element_text.replace('’','\'')
+    quote_element_text = quote_element_text.replace('‘','\'')
 
-    author_text = quote_element_text.split(' - ')
-    
-    # Check if there is an author part after the dash
-    if len(author_text) > 1:
-        author_text = author_text[1]
-        quote_text = quote_element_text[1:-4-len(author_text)]  # Remove leading and trailing quotes, and author len
+    # Create regex to split by either '"-' or just ' -'
+    pattern = (r'"\s*-\s*|\s+-\s*')
 
+    # Split text by the regex
+    matches = re.split(pattern, quote_element_text)
+
+    # Set quote text as first half of the match
+    quote_text = matches[0]
+
+    # Set author text as either the second half or Anonymous
+    if len(matches) > 1:
+        author_text = matches[1]
     else:
-        author_text = "Anonx"  # Set to an empty string if there is no author
-        quote_text = quote_element_text[1:-1]  # Remove leading and trailing quotes
-
+        author_text = "Anonymous"
+    
+    # Add quote to list
     rows.append([quote_text, author_text])
 
 # Write to CSV file
