@@ -24,6 +24,7 @@ for quote_element in quote_elements:
     quote_element_text = quote_element_text.replace('–','-')
     quote_element_text = quote_element_text.replace('(','-')
     quote_element_text = quote_element_text.replace('”','\"')
+    quote_element_text = quote_element_text.replace('’','\'')
 
     author_text = quote_element_text.split(' - ')
     
